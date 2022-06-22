@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import toast, { Toaster } from 'react-hot-toast'
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from '../components/firebase.config';
 import MainPage from '../components/MainPage'
 
 const style = {
@@ -13,11 +14,14 @@ const style = {
 }
 
 export default function Home() {
-  // const { address, connectWallet } = useWeb3()
-  const address = "oelkarmy@gmail.com";
+
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+
+
   const welcomeUser = (userName, toastHandler = toast) => {
     toastHandler.success(
-      `Welcome back ${userName != 'Unnamed' ? `${userName}` : ''}!`,
+      `Welcome back ${userName != 'Unnamed' ? `${userName}` : ''} !`,
       {
         style: {
           background: '#04111d',
@@ -30,40 +34,29 @@ export default function Home() {
 
 
   useEffect(() => {
-    if (!address) return
+    if (!user) return
       ; (async () => {
-        const userDoc = {
-          _type: 'users',
-          _id: address,
-          userName: 'Unnamed',
-          walletAddress: address,
-        }
-        const result = "test"
 
-        welcomeUser(result)
+        const userName = await user.displayName
+
+        welcomeUser(userName)
       })()
 
-  }, [address]);
+  }, [user]);
 
   return (
     <div className={style.wrapper}>
       <Toaster
-        position="top-center"
+        position="bottom-center"
         reverseOrder={false}
       />
-      {address ? (
-        <>
 
-          <Header />
-          <MainPage />
-        </>
-      ) : (
-        <div className={style.walletConnectWrapper}>
 
-          connect Wallet
 
-        </div>
-      )}
+      <Header />
+      <MainPage />
+
+
     </div>
   )
 }
