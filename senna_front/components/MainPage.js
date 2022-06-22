@@ -3,7 +3,7 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi'
 import Image from 'next/image'
 
 import HeroImage from '../assets/home.svg'
-import Trending from './Trending'
+
 
 function MainPage() {
    return (
@@ -37,7 +37,7 @@ function MainPage() {
                   />
                </div>
             </div>
-            {/* <Trending /> */}
+
          </div>
       </>
    )

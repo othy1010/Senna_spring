@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
 import toast, { Toaster } from 'react-hot-toast'
-import NFTCard from '../components/NFTCard'
+
 import MainPage from '../components/MainPage'
 
 const style = {
