@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #ffffff00;
+  background-image: url('../assets/AEF556E9.jpg');
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* @keyframes fly {
+  100% {
+    transform: rotate(1turn) translate(100px) rotate(-1turn);
+  }
+}
+
+@keyframes flyPlus {
+  100% {
+    transform: rotate(-1turn) translate(100px) rotate(1turn);
+  }
+}
+
+.wrapper {
+  background-size: cover;
+  background: #fff;
+  overflow: hidden;
+}
+
+.base {
+  position: absolute;
+  filter: blur(150px);
+  opacity: 0.8;
+}
+
+.one {
+  border-radius: 100%;
+  width: 500px;
+  height: 500px;
+  background-color: #87c9ff;
+  right: -200px;
+  top: -200px;
+  z-index: 3;
+  animation: fly 12s linear infinite;
+  transform: rotate(0) translate(80px) rotate(0);
+}
+
+.two {
+  width: 500px;
+  height: 400px;
+  background-color: #ff599b93;
+  bottom: -300px;
+  right: -100px;
+}
+
+.three {
+  border-radius: 100%;
+  width: 450px;
+  height: 450px;
+  left: -200px;
+  bottom: -100px;
+  background-color: #b3588a;
+  animation: flyPlus 8s linear infinite;
+  transform: rotate(0) translate(100px) rotate(0);
+} */
+/* <div class="wrapper">
+            <div class="base one"></div>
+            <div class="base two"></div>
+            <div class="base three"></div>
+          </div> */
