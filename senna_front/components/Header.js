@@ -26,7 +26,7 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-   const [count, setCount] = useState(1);
+   const [count, setCount] = useState(0);
    const [invisible, setInvisible] = useState(false);
 
    const handleBadgeVisibility = () => {
@@ -48,7 +48,7 @@ export default function Header() {
                </div>
 
                <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                  <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  <a href="/drug_store" className="text-base font-medium text-gray-500 hover:text-gray-900">
                      Drug-store
                   </a>
 
@@ -56,9 +56,14 @@ export default function Header() {
                      Find a Doctor
                   </a>
                   <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                     Orders
+                  </a>
+                  <a href="/tracking" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                     tracking
+                  </a>
+                  <a href="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
                      About us
                   </a>
-
 
                </Popover.Group>
                {user ? (
