@@ -2,8 +2,26 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
 import sennaLogo from '../assets/logo.svg'
 import Image from 'next/image'
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from './firebase.config';
+import { useRouter } from 'next/router'
 export default function Sign_in_card() {
+   const router = useRouter();
+
+   const firebaseAuth = getAuth(app);
+   const provider = new GoogleAuthProvider();
+
+   const login = async () => {
+      try {
+         const result = await signInWithPopup(firebaseAuth, provider);
+         console.log(result);
+         router.push('/')
+      }
+      catch (error) {
+         console.log(error);
+      }
+
+   }
    return (
       <>
 
@@ -14,13 +32,8 @@ export default function Sign_in_card() {
                   <Image src={sennaLogo} width={120}
                      height={120} />
 
-                  <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
-                  <p className="mt-2 text-center text-sm text-gray-600">
-                     Or{' '}
-                     <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        start your 14-day free trial
-                     </a>
-                  </p>
+                  <h2 className="mt-6 text-center text-3xl  text-gray-900">Sign in to your account</h2>
+
                </div>
                <form className="mt-8 space-y-6" action="#" method="POST">
                   <input type="hidden" name="remember" defaultValue="true" />
@@ -75,15 +88,23 @@ export default function Sign_in_card() {
                      </div>
                   </div>
 
-                  <div>
+                  <div className="flex flex-col gap-4">
+
+
                      <button
                         type="submit"
                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+
                      >
-                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                           <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-                        </span>
                         Sign in
+                     </button>
+                     <button
+                        type='reset'
+                        className="group relative w-full justify-center py-2 px-4 border border-transparent text-white  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm  text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
+                        onClick={login}
+                     >
+                        <svg className="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+                        Sign in with Google
                      </button>
                   </div>
                </form>
