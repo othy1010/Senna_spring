@@ -1,12 +1,8 @@
-package org.sid.servicesImp;
+package com.senna.backend.service.impl;
 
 import java.util.Comparator;
 import java.util.List;
 
-import org.sid.dao.Token;
-import org.sid.dao.UserRepo;
-import org.sid.entities.User;
-import org.sid.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.util.SendEmail;
+
+import com.senna.backend.dao.Token;
+import com.senna.backend.dao.UserRepository;
+import com.senna.backend.domain.User;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -28,17 +27,19 @@ import org.util.SendEmail;
 @RequestMapping("api/")
 public class UserServiceImpl implements UserService {
    @Autowired
-   private UserRepo userRepo;
+   private UserRepository userRepo;
 
    @Override
    @PostMapping("users")
    public User saveUser(@RequestBody User user) {
       user.setToken(new Token().nextString());
       User userN = userRepo.save(user);
-      String sub = "Creation du compte";
-      String html = "<h1>Creation de votre compte</h1><p>Vous trouvez ci-joint les informations"
-            + " necessaires pour vous connectez</p><ul><li>email : " + user.getEmail() + "</li><li>mot de passe : "
-            + user.getPassword() + "</li></ul>";
+      // String sub = "Creation du compte";
+      // String html = "<h1>Creation de votre compte</h1><p>Vous trouvez ci-joint les
+      // informations"
+      // + " necessaires pour vous connectez</p><ul><li>email : " + user.getEmail() +
+      // "</li><li>mot de passe : "
+      // + user.getPassword() + "</li></ul>";
       // SendEmail.sendMail(user.getEmail(),sub,html);
       return userN;
    }
@@ -102,22 +103,6 @@ public class UserServiceImpl implements UserService {
    @DeleteMapping("users/userId/{userId}")
    public void deleteUser(@PathVariable Long userId) {
       userRepo.deleteById(userId);
-   }
-
-   @GetMapping("admin/notifications/users")
-   public List<User> adminNotifsUsers() {
-      List<User> listUsers = getUsers();
-      List<User> notifsUsers = null;
-      for (User user : listUsers) {
-         if (!user.getIsAdmin()) {
-            if (!user.getIsConfirmed()) {
-               notifsUsers.add(user);
-            }
-         }
-      }
-      // notifications lifo
-      notifsUsers.sort(Comparator.comparing(User::getUserId).reversed());
-      return notifsUsers;
    }
 
 }

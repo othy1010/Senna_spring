@@ -15,17 +15,17 @@ import java.util.Objects;
 @Entity(name = "doctor")
 public class Doctor {
    @Id
-   @SequenceGenerator(name = "doctor_sequence", sequenceName = "doctor_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctor_sequence")
-   @Column(name = "doctor_id", updatable = false)
-   private Long doctor_id;
+   @SequenceGenerator(name = "doctorSequence", sequenceName = "doctorSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "doctorSequence")
+   @Column(name = "doctorId", updatable = false)
+   private Long doctorId;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "user_id")
+   @JoinColumn(name = "userId")
    private User user;
 
-   @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN")
-   private Boolean is_active;
+   @Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")
+   private Boolean isActive;
 
    @Override
    public boolean equals(Object o) {
@@ -34,7 +34,7 @@ public class Doctor {
       if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
          return false;
       Doctor doctor = (Doctor) o;
-      return doctor_id != null && Objects.equals(doctor_id, doctor.doctor_id);
+      return doctorId != null && Objects.equals(doctorId, doctor.doctorId);
    }
 
    @Override

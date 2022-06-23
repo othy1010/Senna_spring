@@ -9,48 +9,46 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
-
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @Entity(name = "prescription")
 // class prescription{
-//     - Long prescription_id
-//     - Long patient_id
-//     - Long doctor_id
-//     - String prescription_name
-//     - Date prescription_date
-//     - String prescription_description
-//     - String prescription_status
-//     - List<drug> drugs
-//     }
-public class Prescription
-{
+// - Long prescriptionId
+// - Long patientId
+// - Long doctorId
+// - String prescriptionName
+// - Date prescriptionDate
+// - String prescriptionDescription
+// - String prescriptionStatus
+// - List<drug> drugs
+// }
+public class Prescription {
     @Id
-    @SequenceGenerator(name = "prescription_sequence", sequenceName = "prescription_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prescription_sequence")
-    @Column(name = "prescription_id", updatable = false)
-    private Long prescription_id;
+    @SequenceGenerator(name = "prescriptionSequence", sequenceName = "prescriptionSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prescriptionSequence")
+    @Column(name = "prescriptionId", updatable = false)
+    private Long prescriptionId;
 
-    @Column(name = "prescription_name")
-    private String prescription_name;
+    @Column(name = "prescriptionName")
+    private String prescriptionTitle;
 
-    @Column(name = "prescription_date")
-    private LocalDateTime prescription_date;
+    @Column(name = "prescriptionDate")
+    private LocalDateTime prescriptionDate;
 
-    @Column(name = "prescription_description")
-    private String prescription_description;
+    @Column(name = "prescriptionDescription")
+    private String prescriptionDescription;
 
-    @Column(name = "prescription_status")
-    private String prescription_status;
+    @Column(name = "prescriptionStatus")
+    private String prescriptionStatus;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patientId")
     private Patient patient;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "doctorId")
     private Doctor doctor;
 
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
@@ -58,14 +56,16 @@ public class Prescription
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Prescription that = (Prescription) o;
-        return Objects.equals(prescription_id, that.prescription_id);
+        return Objects.equals(prescriptionId, that.prescriptionId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prescription_id);
+        return Objects.hash(prescriptionId);
     }
 }

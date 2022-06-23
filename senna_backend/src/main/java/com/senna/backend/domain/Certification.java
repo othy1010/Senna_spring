@@ -15,22 +15,22 @@ import java.util.Objects;
 @Entity(name = "certification")
 public class Certification {
    @Id
-   @SequenceGenerator(name = "certification_sequence", sequenceName = "certification_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "certification_sequence")
-   @Column(name = "certification_id", updatable = false)
-   private Long certification_id;
+   @SequenceGenerator(name = "certificationSequence", sequenceName = "certificationSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "certificationSequence")
+   @Column(name = "certificationId", updatable = false)
+   private Long certificationId;
 
-   @Column(name = "doctor_id", updatable = false)
-   private Long doctor_id;
+   @Column(name = "doctorId", updatable = false)
+   private Long doctorId;
 
-   @Column(name = "certification_name", nullable = false, columnDefinition = "TEXT")
-   private String certification_name;
+   @Column(name = "certificationName", nullable = false, columnDefinition = "TEXT")
+   private String certificationName;
 
-   @Column(name = "certification_number", nullable = false)
-   private Long certification_number;
+   @Column(name = "certificationNumber", nullable = false)
+   private Long certificationNumber;
 
-   @Column(name = "certification_date", nullable = false, columnDefinition = "TIMESTAMP")
-   private LocalDateTime certification_date;
+   @Column(name = "certificationDate", nullable = false, columnDefinition = "TIMESTAMP")
+   private LocalDateTime certificationDate;
 
    @Override
    public boolean equals(Object o) {
@@ -39,7 +39,7 @@ public class Certification {
       if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
          return false;
       Certification certification = (Certification) o;
-      return certification_id != null && Objects.equals(certification_id, certification.certification_id);
+      return certificationId != null && Objects.equals(certificationId, certification.certificationId);
    }
 
    @Override

@@ -15,13 +15,13 @@ import java.util.Objects;
 @Entity(name = "admin")
 public class Admin {
    @Id
-   @SequenceGenerator(name = "admin_sequence", sequenceName = "admin_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_sequence")
-   @Column(name = "admin_id", updatable = false)
-   private Long admin_id;
+   @SequenceGenerator(name = "adminSequence", sequenceName = "adminSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "adminSequence")
+   @Column(name = "adminId", updatable = false)
+   private Long adminId;
 
    @OneToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "user_id")
+   @JoinColumn(name = "userId")
    private User user;
 
    @Override
@@ -31,7 +31,7 @@ public class Admin {
       if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
          return false;
       Admin admin = (Admin) o;
-      return admin_id != null && Objects.equals(admin_id, admin.admin_id);
+      return adminId != null && Objects.equals(adminId, admin.adminId);
    }
 
    @Override

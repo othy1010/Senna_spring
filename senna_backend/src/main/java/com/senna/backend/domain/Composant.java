@@ -17,13 +17,13 @@ import java.util.Objects;
 
 public class Composant {
    @Id
-   @SequenceGenerator(name = "composant_sequence", sequenceName = "composant_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "composant_sequence")
-   @Column(name = "composant_id", updatable = false)
-   private Long composant_id;
+   @SequenceGenerator(name = "composantSequence", sequenceName = "composantSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "composantSequence")
+   @Column(name = "composantId", updatable = false)
+   private Long composantId;
 
-   @Column(name = "composant_name")
-   private String composant_name;
+   @Column(name = "composantName")
+   private String composantName;
 
    @Override
    public boolean equals(Object o) {
@@ -32,12 +32,12 @@ public class Composant {
       if (o == null || getClass() != o.getClass())
          return false;
       Composant composant = (Composant) o;
-      return composant_id != null &&
-            Objects.equals(composant_id, composant.composant_id);
+      return composantId != null &&
+            Objects.equals(composantId, composant.composantId);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(composant_id);
+      return Objects.hash(composantId);
    }
 }

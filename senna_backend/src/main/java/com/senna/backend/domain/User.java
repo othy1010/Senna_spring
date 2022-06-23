@@ -14,16 +14,16 @@ import java.util.Objects;
 @Entity(name = "Users")
 public class User {
     @Id
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @Column(name = "user_id", updatable = false)
-    private Long user_id;
+    @SequenceGenerator(name = "userSequence", sequenceName = "userSequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
+    @Column(name = "userId", updatable = false)
+    private Long userId;
 
-    @Column(name = "first_name", nullable = false, columnDefinition = "TEXT")
-    private String first_name;
+    @Column(name = "firstName", nullable = false, columnDefinition = "TEXT")
+    private String firstName;
 
-    @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
-    private String last_name;
+    @Column(name = "lastName", nullable = false, columnDefinition = "TEXT")
+    private String lastName;
 
     @Column(name = "CIN", nullable = false, columnDefinition = "TEXT")
     private String CIN;
@@ -47,7 +47,7 @@ public class User {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
             return false;
         User user = (User) o;
-        return user_id != null && Objects.equals(user_id, user.user_id);
+        return userId != null && Objects.equals(userId, user.userId);
     }
 
     @Override

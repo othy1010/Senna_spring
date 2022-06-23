@@ -17,16 +17,16 @@ import java.util.Objects;
 
 public class Supplier {
    @Id
-   @SequenceGenerator(name = "supplier_sequence", sequenceName = "supplier_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_sequence")
-   @Column(name = "supplier_id", updatable = false)
-   private Long supplier_id;
+   @SequenceGenerator(name = "supplierSequence", sequenceName = "supplierSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplierSequence")
+   @Column(name = "supplierId", updatable = false)
+   private Long supplierId;
 
-   @Column(name = "supplier_name")
-   private String supplier_name;
+   @Column(name = "supplierName")
+   private String supplierName;
 
-   @Column(name = "supplier_description")
-   private String supplier_description;
+   @Column(name = "supplierDescription")
+   private String supplierDescription;
 
    @Override
    public boolean equals(Object o) {
@@ -35,12 +35,12 @@ public class Supplier {
       if (o == null || getClass() != o.getClass())
          return false;
       Supplier supplier = (Supplier) o;
-      return supplier_id != null &&
-            Objects.equals(supplier_id, supplier.supplier_id);
+      return supplierId != null &&
+            Objects.equals(supplierId, supplier.supplierId);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(supplier_id);
+      return Objects.hash(supplierId);
    }
 }

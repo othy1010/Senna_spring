@@ -16,29 +16,29 @@ import java.util.Objects;
 @Entity(name = "order")
 public class Order {
    @Id
-   @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
-   @Column(name = "order_id", updatable = false)
-   private Long order_id;
+   @SequenceGenerator(name = "orderSequence", sequenceName = "orderSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orderSequence")
+   @Column(name = "orderId", updatable = false)
+   private Long orderId;
 
-   @Column(name = "patient_id", updatable = false)
-   private Long patient_id;
+   @Column(name = "patientId", updatable = false)
+   private Long patientId;
 
-   @Column(name = "total_price", nullable = false, columnDefinition = "DECIMAL(10,2)")
-   private Double total_price;
+   @Column(name = "totalPrice", nullable = false, columnDefinition = "DECIMAL(10,2)")
+   private Double totalPrice;
 
-   @Column(name = "order_track_number", nullable = false, columnDefinition = "TEXT")
-   private String order_track_number;
+   @Column(name = "orderTrackNumber", nullable = false, columnDefinition = "TEXT")
+   private String orderTrackNumber;
 
-   @Column(name = "order_date", nullable = false, columnDefinition = "TIMESTAMP")
-   private LocalDateTime order_date;
+   @Column(name = "orderDate", nullable = false, columnDefinition = "TIMESTAMP")
+   private LocalDateTime orderDate;
 
    @OneToMany
-   @JoinTable(name = "drug", joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "order_id"), inverseJoinColumns = @JoinColumn(name = "drug_id", referencedColumnName = "drug_id"))
+   @JoinTable(name = "drug", joinColumns = @JoinColumn(name = "orderId", referencedColumnName = "orderId"), inverseJoinColumns = @JoinColumn(name = "drugId", referencedColumnName = "drugId"))
    private List<Drug> drugs;
 
-   @Column(name = "order_status", nullable = false, columnDefinition = "TEXT")
-   private String order_status;
+   @Column(name = "orderStatus", nullable = false, columnDefinition = "TEXT")
+   private String orderStatus;
 
    @Override
    public boolean equals(Object o) {
@@ -47,7 +47,7 @@ public class Order {
       if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
          return false;
       Order order = (Order) o;
-      return order_id != null && Objects.equals(order_id, order.order_id);
+      return orderId != null && Objects.equals(orderId, order.orderId);
    }
 
    @Override
@@ -57,13 +57,13 @@ public class Order {
 }
 
 // @OneToMany
-// @JoinTable(name="detail", joinColumns = @JoinColumn(name = "order_id",
-// referencedColumnName = "order_id"), inverseJoinColumns = @JoinColumn(name =
-// "detail_id", referencedColumnName = "detail_id"))
+// @JoinTable(name="detail", joinColumns = @JoinColumn(name = "orderId",
+// referencedColumnName = "orderId"), inverseJoinColumns = @JoinColumn(name =
+// "detailId", referencedColumnName = "detailId"))
 // private List<Detail> details;
 
 // @OneToMany
-// @JoinTable(name="job", joinColumns = @JoinColumn(name = "order_id",
-// referencedColumnName = "order_id"), inverseJoinColumns = @JoinColumn(name =
-// "job_id", referencedColumnName = "job_id"))
+// @JoinTable(name="job", joinColumns = @JoinColumn(name = "orderId",
+// referencedColumnName = "orderId"), inverseJoinColumns = @JoinColumn(name =
+// "jobId", referencedColumnName = "jobId"))
 // private List<Job> jobs;

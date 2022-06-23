@@ -16,48 +16,48 @@ import java.util.Objects;
 @Entity(name = "drug")
 public class Drug {
    @Id
-   @SequenceGenerator(name = "drug_sequence", sequenceName = "drug_sequence", allocationSize = 1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_sequence")
-   @Column(name = "drug_id", updatable = false)
-   private Long drug_id;
+   @SequenceGenerator(name = "drugSequence", sequenceName = "drugSequence", allocationSize = 1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drugSequence")
+   @Column(name = "drugId", updatable = false)
+   private Long drugId;
 
-   @Column(name = "drug_name")
-   private String drug_name;
+   @Column(name = "drugName")
+   private String drugName;
 
-   @Column(name = "drug_description")
-   private String drug_description;
+   @Column(name = "drugDescription")
+   private String drugDescription;
 
-   @Column(name = "drug_price")
-   private Double drug_price;
+   @Column(name = "drugPrice")
+   private Double drugPrice;
 
-   @Column(name = "drug_quantity")
-   private Integer drug_quantity;
+   @Column(name = "drugQuantity")
+   private Integer drugQuantity;
 
-   @Column(name = "drug_created_at")
-   private LocalDateTime drug_created_at;
+   @Column(name = "drugCreatedAt")
+   private LocalDateTime drugCreatedAt;
 
-   @Column(name = "drug_stock")
-   private Integer drug_stock;
+   @Column(name = "drugStock")
+   private Integer drugStock;
 
-   @Column(name = "need_prescription")
-   private Boolean need_prescription;
-
-   @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "category_id")
-   private Category drug_category;
+   @Column(name = "needPrescription")
+   private Boolean needPrescription;
 
    @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "drug_supplier_id")
-   private Supplier drug_supplier;
+   @JoinColumn(name = "categoryId")
+   private Category drugCategory;
 
-   @Column(name = "drug_usage")
-   private String drug_usage;
+   @ManyToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "drugSupplierId")
+   private Supplier drugSupplier;
 
-   @Column(name = "drug_warnings")
-   private String drug_warnings;
+   @Column(name = "drugUsage")
+   private String drugUsage;
 
-   @Column(name = "drug_Side_effects")
-   private String drug_Side_effects;
+   @Column(name = "drugWarnings")
+   private String drugWarnings;
+
+   @Column(name = "drugSideEffects")
+   private String drugSideEffects;
 
    @Column(name = "components")
    private List<Composant> components;
@@ -69,11 +69,11 @@ public class Drug {
       if (o == null || getClass() != o.getClass())
          return false;
       Drug drug = (Drug) o;
-      return Objects.equals(drug_id, drug.drug_id);
+      return Objects.equals(drugId, drug.drugId);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(drug_id);
+      return Objects.hash(drugId);
    }
 }
