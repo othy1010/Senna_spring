@@ -1,66 +1,26 @@
-package com.senna.backend.service.impl;
+package com.senna.backend.service;
 
-import com.senna.backend.dao.JobRepository;
-import com.senna.backend.domain.Job;
-import com.senna.backend.dto.JobDTO;
-import com.senna.backend.mapper.JobMapper;
-import com.senna.backend.service.JobService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
+import com.senna.backend.domain.User;
 
-@Service
-@Transactional
-public class DrugServiceImpl implements DrugService {
-    private final JobRepository repository;
+public interface UserService {
 
-    public DrugServiceImpl(JobRepository repository) {
-        this.repository = repository;
-    }
+   User saveUser(User user);
 
-    @Override
-    public Job save(Job entity) {
-        return repository.save(entity);
-    }
+   User findByEmail(String email);
 
-    @Override
-    public List<Job> save(List<Job> entities) {
-        return (List<Job>) repository.saveAll(entities);
-    }
+   User findByUserId(Long idU);
 
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
+   List<User> findByUsername(String username);
 
-    @Override
-    public Optional<Job> findById(Long id) {
-        return repository.findById(id);
-    }
+   User findByToken(String token);
 
-    @Override
-    public List<Job> findAll() {
-        return (List<Job>) repository.findAll();
-    }
+   User updateUser(Long idU, User user);
 
-    @Override
-    public Page<Job> findAll(Pageable pageable) {
-        Page<Job> entityPage = repository.findAll(pageable);
-        List<Job> entities = entityPage.getContent();
-        return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
-    }
+   // User findBybidID(long bidId);
 
-    @Override
-    public Job update(Job entity, Long id) {
-        Optional<Job> optional = findById(id);
-        if (optional.isPresent()) {
-            return save(entity);
-        }
-        return null;
-    }
+   // User findByItemId(long itemId);
+
+   void deleteUser(Long idU);
+
 }

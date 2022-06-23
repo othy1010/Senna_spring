@@ -1,17 +1,22 @@
 package com.senna.backend.dao;
 
+import java.util.List;
 import com.senna.backend.domain.User;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findAll();
 
-@Repository
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
-    @Query(value = "select * from users where email=?1", nativeQuery = true)
-    Optional<User> findByEmail(String email);
+    User findByUserId(Long userId);
 
-    @Query(value = "select * from users where email=?1 and password=?2", nativeQuery = true)
-    Optional<User> checkCredentials(String email, String password);
+    User findByCountry(String country);
+
+    User findByToken(String token);
+
+    List<User> findAllByIsConfirmed(Boolean isConfirmed);
+
+    List<User> findByUsername(String username);
+
+    User findByEmail(String email);
+
 }

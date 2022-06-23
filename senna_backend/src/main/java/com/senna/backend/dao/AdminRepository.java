@@ -1,9 +1,9 @@
 package com.senna.backend.dao;
 
+import java.util.List;
 import com.senna.backend.domain.Admin;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface AdminRepository extends PagingAndSortingRepository<Admin, Long> {
+public interface AdminRepository extends JpaRepository<Admin, Long> {
+
 }

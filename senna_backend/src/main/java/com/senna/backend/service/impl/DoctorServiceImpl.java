@@ -1,66 +1,26 @@
-package com.senna.backend.service.impl;
+package com.senna.backend.service;
 
-import com.senna.backend.dao.IconRepository;
-import com.senna.backend.domain.Icon;
-import com.senna.backend.dto.IconDTO;
-import com.senna.backend.mapper.IconMapper;
-import com.senna.backend.service.IconService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
+import com.senna.backend.domain.User;
 
-@Service
-@Transactional
-public class DoctorServiceImpl implements DoctorService {
-    private final IconRepository repository;
+public interface UserService {
 
-    public DoctorServiceImpl(IconRepository repository) {
-        this.repository = repository;
-    }
+   User saveUser(User user);
 
-    @Override
-    public Icon save(Icon entity) {
-        return repository.save(entity);
-    }
+   User findByEmail(String email);
 
-    @Override
-    public List<Icon> save(List<Icon> entities) {
-        return (List<Icon>) repository.saveAll(entities);
-    }
+   User findByUserId(Long idU);
 
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
+   List<User> findByUsername(String username);
 
-    @Override
-    public Optional<Icon> findById(Long id) {
-        return repository.findById(id);
-    }
+   User findByToken(String token);
 
-    @Override
-    public List<Icon> findAll() {
-        return (List<Icon>) repository.findAll();
-    }
+   User updateUser(Long idU, User user);
 
-    @Override
-    public Page<Icon> findAll(Pageable pageable) {
-        Page<Icon> entityPage = repository.findAll(pageable);
-        List<Icon> entities = entityPage.getContent();
-        return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
-    }
+   // User findBybidID(long bidId);
 
-    @Override
-    public Icon update(Icon entity, Long id) {
-        Optional<Icon> optional = findById(id);
-        if (optional.isPresent()) {
-            return save(entity);
-        }
-        return null;
-    }
+   // User findByItemId(long itemId);
+
+   void deleteUser(Long idU);
+
 }

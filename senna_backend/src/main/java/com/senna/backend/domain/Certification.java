@@ -20,11 +20,11 @@ public class Certification {
    @Column(name = "certification_id", updatable = false)
    private Long certification_id;
 
-   @Column(name = "certification_name", nullable = false, columnDefinition = "TEXT")
-   private String certification_name;
-
    @Column(name = "doctor_id", updatable = false)
    private Long doctor_id;
+
+   @Column(name = "certification_name", nullable = false, columnDefinition = "TEXT")
+   private String certification_name;
 
    @Column(name = "certification_number", nullable = false)
    private Long certification_number;

@@ -1,9 +1,9 @@
 package com.senna.backend.dao;
 
+import java.util.List;
 import com.senna.backend.domain.Doctor;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface DoctorRepository extends PagingAndSortingRepository<Doctor, Long> {
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+
 }

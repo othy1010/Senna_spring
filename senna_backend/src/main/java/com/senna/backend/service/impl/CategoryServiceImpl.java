@@ -1,66 +1,26 @@
-package com.senna.backend.service.impl;
+package com.senna.backend.service;
 
-import com.senna.backend.dao.CategoryRepository;
-import com.senna.backend.dto.CategoryDTO;
-import com.senna.backend.mapper.CategoryMapper;
-import com.senna.backend.service.CategoryService;
-import com.senna.backend.domain.Category;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
+import com.senna.backend.domain.User;
 
-@Service
-@Transactional
-public class CategoryServiceImpl implements CategoryService {
-    private final CategoryRepository repository;
+public interface UserService {
 
-    public CategoryServiceImpl(CategoryRepository repository) {
-        this.repository = repository;
-    }
+   User saveUser(User user);
 
-    @Override
-    public Category save(Category entity) {
-        return repository.save(entity);
-    }
+   User findByEmail(String email);
 
-    @Override
-    public List<Category> save(List<Category> entities) {
-        return (List<Category>) repository.saveAll(entities);
-    }
+   User findByUserId(Long idU);
 
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
+   List<User> findByUsername(String username);
 
-    @Override
-    public Optional<Category> findById(Long id) {
-        return repository.findById(id);
-    }
+   User findByToken(String token);
 
-    @Override
-    public List<Category> findAll() {
-        return (List<Category>) repository.findAll();
-    }
+   User updateUser(Long idU, User user);
 
-    @Override
-    public Page<Category> findAll(Pageable pageable) {
-        Page<Category> entityPage = repository.findAll(pageable);
-        List<Category> entities = entityPage.getContent();
-        return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
-    }
+   // User findBybidID(long bidId);
 
-    @Override
-    public Category update(Category entity, Long id) {
-        Optional<Category> optional = findById(id);
-        if (optional.isPresent()) {
-            return save(entity);
-        }
-        return null;
-    }
+   // User findByItemId(long itemId);
+
+   void deleteUser(Long idU);
+
 }

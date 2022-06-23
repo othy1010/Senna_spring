@@ -1,61 +1,26 @@
-package com.senna.backend.service.impl;
+package com.senna.backend.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
+import com.senna.backend.domain.User;
 
-@Service
-@Transactional
-public class AdminServiceImpl implements AdminService {
-    private final 
+public interface UserService {
 
-    public AdminServiceImpl(CustomerRepository repository) {
-        this.repository = repository;
-    }
+   User saveUser(User user);
 
-    @Override
-    public Customer save(Customer entity) {
-        return repository.save(entity);
-    }
+   User findByEmail(String email);
 
-    @Override
-    public List<Customer> save(List<Customer> entities) {
-        return (List<Customer>) repository.saveAll(entities);
-    }
+   User findByUserId(Long idU);
 
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
-    }
+   List<User> findByUsername(String username);
 
-    @Override
-    public Optional<Customer> findById(Long id) {
-        return repository.findById(id);
-    }
+   User findByToken(String token);
 
-    @Override
-    public List<Customer> findAll() {
-        return (List<Customer>) repository.findAll();
-    }
+   User updateUser(Long idU, User user);
 
-    @Override
-    public Page<Customer> findAll(Pageable pageable) {
-        Page<Customer> entityPage = repository.findAll(pageable);
-        List<Customer> entities = entityPage.getContent();
-        return new PageImpl<>(entities, pageable, entityPage.getTotalElements());
-    }
+   // User findBybidID(long bidId);
 
-    @Override
-    public Customer update(Customer entity, Long id) {
-        Optional<Customer> optional = findById(id);
-        if (optional.isPresent()) {
-            return save(entity);
-        }
-        return null;
-    }
+   // User findByItemId(long itemId);
+
+   void deleteUser(Long idU);
+
 }
