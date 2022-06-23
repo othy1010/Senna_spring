@@ -1,26 +1,68 @@
 package com.senna.backend.service.impl;
 
 import java.util.List;
-import com.senna.backend.domain.User;
 
-public interface UserService {
+import org.springframework.beans.factory.annotation.Autowired;
 
-   User saveUser(User user);
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-   User findByEmail(String email);
+import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.domain.Category;
+import com.senna.backend.service.CategoryService;
 
-   User findByUserId(Long idU);
+@CrossOrigin(origins = "http://localhost:3000/")
+@Service
+@Transactional
+@RestController
+@RequestMapping("api/")
+public class CategoryServiceImpl implements CategoryService {
+   @Autowired
+   private CategoryRepository categoryRepository;
 
-   List<User> findByUsername(String username);
+   @Override
+   @PostMapping("categories")
+   public Category saveCategory(@RequestBody Category category) {
+      return categoryRepository.save(category);
+   }
 
-   User findByToken(String token);
+   @GetMapping("categories")
+   public List<Category> getCategorys() {
+      // TODO Auto-generated method stub
+      return categoryRepository.findAll();
+   }
 
-   User updateUser(Long idU, User user);
+   @Override
+   @GetMapping("categories/categoryId/{categoryId}")
+   public Category findByCategoryId(@PathVariable Long categoryId) {
+      // TODO Auto-generated method stub
+      return categoryRepository.findByCategoryId(categoryId);
+   }
 
-   // User findBybidID(long bidId);
+   @Override
+   @PutMapping("categories/categoryId/{categoryId}")
+   public Category updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
+      Category categoryUpdated = categoryRepository.findByCategoryId(categoryId);
 
-   // User findByItemId(long itemId);
+      categoryUpdated.setCategoryName(category.getCategoryName());
+      categoryUpdated.setSuperCategoryId(category.getSuperCategoryId());
 
-   void deleteUser(Long idU);
+      categoryRepository.save(categoryUpdated);
+      return categoryUpdated;
+   }
+
+   @DeleteMapping("categories/categoryId/{categoryId}")
+   public void deleteCategory(@PathVariable Long categoryId) {
+      categoryRepository.deleteById(categoryId);
+   }
 
 }
