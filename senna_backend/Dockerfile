@@ -1,15 +1,15 @@
-FROM gradle:7.4.2-jdk18-alpine AS build
-COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build --no-daemon 
+FROM gradle:7.4-jdk17
 
-FROM openjdk:11-jre-slim
+VOLUME /tmp
+
+RUN mkdir app
+WORKDIR /app
+
+COPY . .
+
+RUN gradle assemble
+
 
 EXPOSE 8080
 
-RUN mkdir /app
-
-
-COPY --from=build /home/gradle/src/build/libs/*.jar /app/
-
-ENTRYPOINT ["java","-jar","/app/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","./build/libs/backend-0.0.1-SNAPSHOT.war"]
