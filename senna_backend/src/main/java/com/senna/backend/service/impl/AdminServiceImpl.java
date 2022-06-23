@@ -1,26 +1,24 @@
-package com.senna.backend.service;
+package com.senna.backend.service.impl;
 
 import java.util.List;
-import com.senna.backend.domain.User;
+import com.senna.backend.domain.Admin;
 
-public interface UserService {
+public interface AdminServiceImpl {
 
-   User saveUser(User user);
+   public List<Admin> findAll();
 
-   User findByEmail(String email);
+   public Admin findByAdminId(Long adminId);
 
-   User findByUserId(Long idU);
+   public Admin findByEmail(String email);
 
-   List<User> findByUsername(String username);
+   public Admin findByUsername(String username);
 
-   User findByToken(String token);
+   public Admin findByToken(String token);
 
-   User updateUser(Long idU, User user);
+   public Admin saveAdmin(Admin admin);
 
-   // User findBybidID(long bidId);
+   public Admin updateAdmin(Long adminId, Admin admin);
 
-   // User findByItemId(long itemId);
-
-   void deleteUser(Long idU);
+   public void deleteAdmin(Long adminId);
 
 }

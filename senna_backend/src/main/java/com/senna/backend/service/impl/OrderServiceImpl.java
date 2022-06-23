@@ -1,4 +1,4 @@
-package com.senna.backend.service;
+package com.senna.backend.service.impl;
 
 import java.util.List;
 import com.senna.backend.domain.User;
