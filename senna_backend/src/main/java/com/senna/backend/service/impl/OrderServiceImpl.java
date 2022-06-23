@@ -1,26 +1,65 @@
 package com.senna.backend.service.impl;
 
 import java.util.List;
-import com.senna.backend.domain.User;
 
-public interface UserService {
+import org.springframework.beans.factory.annotation.Autowired;
 
-    User saveUser(User user);
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-    User findByEmail(String email);
+import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.SupplierRepository;
+import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Supplier;
+import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.SupplierService;
 
-    User findByUserId(Long idU);
+@CrossOrigin(origins = "http://localhost:3000/")
+@Service
+@Transactional
+@RestController
+@RequestMapping("api/")
+public class SupplierServiceImpl implements SupplierService {
+    @Autowired
+    private SupplierRepository supplierRepository;
 
-    List<User> findByUsername(String username);
+    @Override
+    public Supplier saveSupplier(Supplier supplier) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-    User findByToken(String token);
+    @Override
+    public Supplier findBySupplierId(Long supplierId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-    User updateUser(Long idU, User user);
+    @Override
+    public Supplier updateSupplier(Long supplierId, Supplier supplier) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-    // User findBybidID(long bidId);
+    @Override
+    public void deleteSupplier(Long supplierId) {
+        // TODO Auto-generated method stub
 
-    // User findByItemId(long itemId);
+    }
 
-    void deleteUser(Long idU);
+    @Override
+    public List<Supplier> findAll() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

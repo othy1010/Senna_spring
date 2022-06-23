@@ -17,52 +17,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class CategoryServiceImpl implements CategoryService {
+public class SupplierServiceImpl implements SupplierService {
    @Autowired
-   private CategoryRepository categoryRepository;
+   private SupplierRepository supplierRepository;
 
    @Override
-   @PostMapping("categories")
-   public Category saveCategory(@RequestBody Category category) {
-      return categoryRepository.save(category);
-   }
-
-   @GetMapping("categories")
-   public List<Category> getCategorys() {
+   public Supplier saveSupplier(Supplier supplier) {
       // TODO Auto-generated method stub
-      return categoryRepository.findAll();
+      return null;
    }
 
    @Override
-   @GetMapping("categories/categoryId/{categoryId}")
-   public Category findByCategoryId(@PathVariable Long categoryId) {
+   public Supplier findBySupplierId(Long supplierId) {
       // TODO Auto-generated method stub
-      return categoryRepository.findByCategoryId(categoryId);
+      return null;
    }
 
    @Override
-   @PutMapping("categories/categoryId/{categoryId}")
-   public Category updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
-      Category categoryUpdated = categoryRepository.findByCategoryId(categoryId);
-
-      categoryUpdated.setCategoryName(category.getCategoryName());
-      categoryUpdated.setSuperCategoryId(category.getSuperCategoryId());
-
-      categoryRepository.save(categoryUpdated);
-      return categoryUpdated;
+   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
+      // TODO Auto-generated method stub
+      return null;
    }
 
-   @DeleteMapping("categories/categoryId/{categoryId}")
-   public void deleteCategory(@PathVariable Long categoryId) {
-      categoryRepository.deleteById(categoryId);
+   @Override
+   public void deleteSupplier(Long supplierId) {
+      // TODO Auto-generated method stub
+
+   }
+
+   @Override
+   public List<Supplier> findAll() {
+      // TODO Auto-generated method stub
+      return null;
    }
 
 }

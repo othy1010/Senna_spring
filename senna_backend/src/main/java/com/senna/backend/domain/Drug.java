@@ -42,13 +42,11 @@ public class Drug {
    @Column(name = "needPrescription")
    private Boolean needPrescription;
 
-   @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "categoryId")
-   private Category drugCategory;
+   @Column(name = "drugCategoryId")
+   private Long drugCategoryId;
 
-   @ManyToOne(cascade = CascadeType.ALL)
-   @JoinColumn(name = "drugSupplierId")
-   private Supplier drugSupplier;
+   @Column(name = "drugSupplierId")
+   private Long drugSupplierId;
 
    @Column(name = "drugUsage")
    private String drugUsage;

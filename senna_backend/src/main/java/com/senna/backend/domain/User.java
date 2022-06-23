@@ -40,6 +40,9 @@ public class User {
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;
 
+    @Column(name = "role", nullable = false, columnDefinition = "TEXT")
+    private String role;
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

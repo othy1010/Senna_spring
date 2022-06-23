@@ -43,13 +43,11 @@ public class Prescription {
     @Column(name = "prescriptionStatus")
     private String prescriptionStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientId")
-    private Patient patient;
+    @Column(name = "patientId")
+    private Long patientId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "doctorId")
-    private Doctor doctor;
+    @Column(name = "doctorId")
+    private Long doctorId;
 
     @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
     private List<Drug> drugs;

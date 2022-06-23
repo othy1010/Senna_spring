@@ -6,4 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ComposantRepository extends JpaRepository<Composant, Long> {
 
+   List<Composant> findAll();
+
+   Composant findByComposantId(Long composantId);
+
 }

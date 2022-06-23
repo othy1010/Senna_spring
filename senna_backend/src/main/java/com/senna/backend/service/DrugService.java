@@ -15,36 +15,12 @@ public interface DrugService {
 
    List<Drug> findAll();
 
-   List<Drug> findAllByPatientId(Long patientId);
+   List<Drug> findAllBydrugUsageLike(String drugUsage);
 
-   List<Drug> findAllByDoctorId(Long doctorId);
+   Drug findByDrugNameLike(String drugName);
 
-   List<Drug> findAllBySupplierId(Long supplierId);
+   List<Drug> findAllByDrugUsageLike(String drugUsage);
 
-   List<Drug> findAllByOrderId(Long orderId);
-
-   List<Drug> findAllByPrescriptionId(Long prescriptionId);
-
-   List<Drug> findAllByDrugName(String drugName);
-
-   List<Drug> findAllByDrugDescription(String drugDescription);
-
-   List<Drug> findAllByDrugPrice(Double drugPrice);
-
-   List<Drug> findAllByDrugQuantity(Integer drugQuantity);
-
-   List<Drug> findAllByDrugExpirationDate(String drugExpirationDate);
-
-   List<Drug> findAllByDrugManufactureDate(String drugManufactureDate);
-
-   List<Drug> findAllByDrugStatus(String drugStatus);
-
-   List<Drug> findAllByDrugType(String drugType);
-
-   List<Drug> findAllByDrugImage(String drugImage);
-
-   List<Drug> findAllByDrugImageContentType(String drugImageContentType);
-
-   List<Drug> findAllByDrugImageFileSize(Integer drugImageFileSize);
+   List<Drug> findAllByDrugSupplierId(Long drugSupplierId);
 
 }
