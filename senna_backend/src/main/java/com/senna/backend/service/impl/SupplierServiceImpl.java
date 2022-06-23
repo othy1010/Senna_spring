@@ -34,32 +34,35 @@ public class SupplierServiceImpl implements SupplierService {
 
    @Override
    public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
+      Supplier supplierN = supplierRepository.save(supplier);
+      return supplierN;
    }
 
    @Override
    public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
+      Supplier supplier = supplierRepository.findBySupplierId(supplierId);
+      return supplier;
    }
 
    @Override
    public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
+      Supplier supplierUpdated = supplierRepository.findBySupplierId(supplierId);
+
+      
+      supplierRepository.save(supplierUpdated);
+      return supplierUpdated;
    }
 
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
-
-   }
+ 
 
    @Override
    public List<Supplier> findAll() {
       // TODO Auto-generated method stub
       return null;
    }
+   @Override
+   public void deleteSupplier(Long supplierId) {
+      supplierRepository.deleteById(supplierId);
 
+   }
 }
