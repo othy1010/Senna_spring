@@ -19,6 +19,6 @@ const app = getApps.length > 0 ? getApps() : initializeApp({ ...firebaseConfig }
 const firestore = getFirestore(app);
 const storage = getStorage(app);
 
-export default { app, firestore, storage }
+export { app, firestore, storage }
 // const analytics = getAnalytics(app);
 
