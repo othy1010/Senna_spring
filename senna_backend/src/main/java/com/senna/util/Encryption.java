@@ -1,4 +1,4 @@
-package org.util;
+package com.senna.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -15,14 +15,16 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 
 public class Encryption {
-    public static SecretKeySpec createSecretKey(char[] password, byte[] salt, int iterationCount, int keyLength) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static SecretKeySpec createSecretKey(char[] password, byte[] salt, int iterationCount, int keyLength)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
         PBEKeySpec keySpec = new PBEKeySpec(password, salt, iterationCount, keyLength);
         SecretKey keyTmp = keyFactory.generateSecret(keySpec);
         return new SecretKeySpec(keyTmp.getEncoded(), "AES");
     }
 
-    public static String encrypt(String dataToEncrypt, SecretKeySpec key) throws GeneralSecurityException, UnsupportedEncodingException {
+    public static String encrypt(String dataToEncrypt, SecretKeySpec key)
+            throws GeneralSecurityException, UnsupportedEncodingException {
         Cipher pbeCipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         pbeCipher.init(Cipher.ENCRYPT_MODE, key);
         AlgorithmParameters parameters = pbeCipher.getParameters();

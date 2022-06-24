@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.senna.backend.dao.AdminRepository;
 import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.SupplierRepository;
+import com.senna.backend.domain.Admin;
 import com.senna.backend.domain.Category;
 import com.senna.backend.domain.Supplier;
+import com.senna.backend.service.AdminService;
 import com.senna.backend.service.CategoryService;
 import com.senna.backend.service.SupplierService;
 
@@ -28,38 +31,47 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class AdminServiceImpl implements AdminService {
    @Autowired
-   private SupplierRepository supplierRepository;
+   private AdminRepository adminRepository;
 
    @Override
-   public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
+   @GetMapping("admins")
+   public List<Admin> findAll() {
+      return adminRepository.findAll();
 
    }
 
    @Override
-   public List<Supplier> findAll() {
-      // TODO Auto-generated method stub
-      return null;
+   @PostMapping("admins")
+   public Admin saveAdmin(@RequestBody Admin admin) {
+      return adminRepository.save(admin);
+   }
+
+   @Override
+   @GetMapping("admins/adminId/{adminId}")
+   public Admin findByAdminId(@PathVariable Long adminId) {
+      return adminRepository.findByAdminId(adminId);
+   }
+
+   @Override
+   @PutMapping("admins/adminId/{adminId}")
+   public Admin updateAdmin(@PathVariable Long adminId, @RequestBody Admin admin) {
+      Admin adminUpdated = adminRepository.findByAdminId(adminId);
+      // TODO : update admin
+      // adminUpdated.setadminname(admin.getadminname());
+      // adminUpdated.setFirstName(admin.getFirstName());
+      // adminUpdated.setSecondName(admin.getSecondName());
+
+      adminRepository.save(adminUpdated);
+      return adminUpdated;
+   }
+
+   @Override
+   @DeleteMapping("admins/adminId/{adminId}")
+   public void deleteAdmin(@PathVariable Long adminId) {
+      adminRepository.deleteById(adminId);
+
    }
 
 }

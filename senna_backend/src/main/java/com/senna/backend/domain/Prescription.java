@@ -2,10 +2,13 @@ package com.senna.backend.domain;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,8 +52,10 @@ public class Prescription {
     @Column(name = "doctorId")
     private Long doctorId;
 
-    @OneToMany(mappedBy = "prescription", cascade = CascadeType.ALL)
-    private List<Drug> drugs;
+    @Fetch(value = FetchMode.SUBSELECT)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "drugId")
+    private List<Drug> drugs= new ArrayList<Drug>();;
 
     @Override
     public boolean equals(Object o) {

@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.PrescriptionRepository;
 import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Prescription;
 import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.PrescriptionService;
 import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,38 +31,64 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class PrescriptionServiceImpl implements PrescriptionService {
     @Autowired
-    private SupplierRepository supplierRepository;
+    private PrescriptionRepository prescriptionRepository;
 
     @Override
-    public Supplier saveSupplier(Supplier supplier) {
-        // TODO Auto-generated method stub
-        return null;
+    @PostMapping("prescriptions")
+    public Prescription savePrescription(@RequestBody Prescription prescription) {
+
+        return prescriptionRepository.save(prescription);
     }
 
     @Override
-    public Supplier findBySupplierId(Long supplierId) {
-        // TODO Auto-generated method stub
-        return null;
+    @GetMapping("prescriptions/prescriptionId/{prescriptionId}")
+    public Prescription findByPrescriptionId(@PathVariable Long prescriptionId) {
+
+        return prescriptionRepository.findByPrescriptionId(prescriptionId);
     }
 
     @Override
-    public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-        // TODO Auto-generated method stub
-        return null;
+    @GetMapping("prescriptions/prescriptionId/{prescriptionId}")
+    public List<Prescription> findAllByPatientId(@PathVariable Long patientId) {
+
+        return prescriptionRepository.findAllByPatientId(patientId);
     }
 
     @Override
-    public void deleteSupplier(Long supplierId) {
+    @GetMapping("prescriptions/prescriptionId/{prescriptionId}")
+    public List<Prescription> findAllByDoctorId(@PathVariable Long doctorId) {
+
+        return prescriptionRepository.findAllByDoctorId(doctorId);
+    }
+
+    @Override
+    @PutMapping("prescriptions/prescriptionId/{prescriptionId}")
+    public Prescription updatePrescription(@PathVariable Long prescriptionId, @RequestBody Prescription prescription) {
+
+        Prescription prescriptionUpdated = prescriptionRepository.findByPrescriptionId(prescriptionId);
+        // TODO : update prescription
+        // prescriptionUpdated.petPrescriptionname(prescription.petPrescriptionname());
+        // prescriptionUpdated.setFirstName(prescription.getFirstName());
+        // prescriptionUpdated.setSecondName(prescription.getSecondName());
+
+        prescriptionRepository.save(prescriptionUpdated);
+        return prescriptionUpdated;
+    }
+
+    @Override
+    @DeleteMapping("prescriptions/prescriptionId/{prescriptionId}")
+    public void deletePrescription(@PathVariable Long prescriptionId) {
         // TODO Auto-generated method stub
+        prescriptionRepository.deleteById(prescriptionId);
 
     }
 
     @Override
-    public List<Supplier> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+    @GetMapping("prescriptions")
+    public List<Prescription> findAll() {
+        return prescriptionRepository.findAll();
     }
 
 }

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.DoctorRepository;
 import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
 import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.DoctorService;
 import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,38 +30,8 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class DoctorServiceImpl implements DoctorService {
    @Autowired
-   private SupplierRepository supplierRepository;
-
-   @Override
-   public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
-
-   }
-
-   @Override
-   public List<Supplier> findAll() {
-      // TODO Auto-generated method stub
-      return null;
-   }
+   private DoctorRepository doctorRepository;
 
 }

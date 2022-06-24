@@ -1,17 +1,18 @@
 package com.senna.backend.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
-@Entity(name = "Users")
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @SequenceGenerator(name = "userSequence", sequenceName = "userSequence", allocationSize = 1)
@@ -36,6 +37,9 @@ public class User {
 
     @Column(name = "address", nullable = false, columnDefinition = "TEXT")
     private String address;
+
+    @Column(name = "token", nullable = false, columnDefinition = "TEXT")
+    private String token;
 
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;

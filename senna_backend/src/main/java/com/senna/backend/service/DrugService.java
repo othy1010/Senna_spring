@@ -15,8 +15,6 @@ public interface DrugService {
 
    List<Drug> findAll();
 
-   List<Drug> findAllBydrugUsageLike(String drugUsage);
-
    Drug findByDrugNameLike(String drugName);
 
    List<Drug> findAllByDrugUsageLike(String drugUsage);

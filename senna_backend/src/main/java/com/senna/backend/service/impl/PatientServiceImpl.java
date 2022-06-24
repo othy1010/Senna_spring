@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.PatientRepository;
 import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Patient;
 import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.PatientService;
 import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,38 +31,32 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class PatientServiceImpl implements PatientService {
     @Autowired
-    private SupplierRepository supplierRepository;
+    private PatientRepository patientRepository;
 
     @Override
-    public Supplier saveSupplier(Supplier supplier) {
+    public Patient savePatient(@RequestBody Patient patient) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Supplier findBySupplierId(Long supplierId) {
+    public Patient findByPatientId(@PathVariable Long patientId) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Supplier updateSupplier(Long supplierId, Supplier supplier) {
+    public Patient updatePatient(@PathVariable Long patientId, @RequestBody Patient patient) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void deleteSupplier(Long supplierId) {
+    public void deletePatient(@PathVariable Long patientId) {
         // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public List<Supplier> findAll() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

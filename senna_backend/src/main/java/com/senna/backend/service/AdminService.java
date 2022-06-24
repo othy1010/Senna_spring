@@ -7,18 +7,15 @@ public interface AdminService {
 
    Admin saveAdmin(Admin admin);
 
-   Admin findByEmail(String email);
+   Admin findByAdminId(Long adminId);
 
-   Admin findByAdminId(Long idA);
-
-   List<Admin> findByUsername(String username);
-
-   Admin findByToken(String token);
-
-   Admin updateAdmin(Long idA, Admin admin);
+   Admin updateAdmin(Long adminId, Admin admin);
 
    // Admin findBybidID(long bidId);
 
+   void deleteAdmin(Long adminId);
+
+   List<Admin> findAll();
    // Admin findByItemId(long itemId);
 
 }

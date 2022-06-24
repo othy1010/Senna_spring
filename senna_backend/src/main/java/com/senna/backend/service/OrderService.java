@@ -9,9 +9,7 @@ public interface OrderService {
 
    Order findByOrderId(Long orderId);
 
-   Order findByorder_track_number(Long orderId);
-
-   List<Order> findAllByPatientId(Long UserId);
+   List<Order> findAllByPatientId(Long patientId);
 
    Order updateOrder(Long orderId, Order order);
 

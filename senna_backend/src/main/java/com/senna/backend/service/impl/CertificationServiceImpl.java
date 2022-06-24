@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.CertificationRepository;
 import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Certification;
 import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.CertificationService;
 import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,38 +31,51 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class CertificationServiceImpl implements CertificationService {
    @Autowired
-   private SupplierRepository supplierRepository;
+   private CertificationRepository certificationRepository;
 
    @Override
-   public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
+   @PostMapping("certifications")
+   public Certification saveCertification(@RequestBody Certification certification) {
+      return certificationRepository.save(certification);
 
    }
 
    @Override
-   public List<Supplier> findAll() {
+   @GetMapping("certifications/certificationId/{certificationId}")
+   public Certification findByCertificationId(@PathVariable Long certificationId) {
+      return certificationRepository.findByCertificationId(certificationId);
+
+   }
+
+   @Override
+   @PutMapping("certifications/certificationId/{certificationId}")
+   public Certification updateCertification(@PathVariable Long certificationId,
+         @RequestBody Certification certification) {
       // TODO Auto-generated method stub
-      return null;
+      Certification certificationUpdated = certificationRepository.findByCertificationId(certificationId);
+      // TODO : update certification
+      // certificationUpdated.setcertificationname(certification.getcertificationname());
+      // certificationUpdated.setFirstName(certification.getFirstName());
+      // certificationUpdated.setSecondName(certification.getSecondName());
+
+      certificationRepository.save(certificationUpdated);
+      return certificationUpdated;
+   }
+
+   @Override
+   @GetMapping("certifications")
+   public List<Certification> findAll() {
+      return certificationRepository.findAll();
+
+   }
+
+   @Override
+   @DeleteMapping("certifications/certificationId/{certificationId}")
+   public void deleteCertification(@PathVariable Long certificationId) {
+      certificationRepository.deleteById(certificationId);
+
    }
 
 }

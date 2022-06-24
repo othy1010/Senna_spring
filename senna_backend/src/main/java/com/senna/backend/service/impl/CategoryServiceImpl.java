@@ -28,38 +28,49 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class CategoryServiceImpl implements CategoryService {
    @Autowired
-   private SupplierRepository supplierRepository;
+   private CategoryRepository categoryRepository;
 
    @Override
-   public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
+   @PostMapping("categories")
+   public Category saveCategory(@RequestBody Category category) {
+      return categoryRepository.save(category);
 
    }
 
    @Override
-   public List<Supplier> findAll() {
-      // TODO Auto-generated method stub
-      return null;
+   @GetMapping("categories/categorieId/{categorieId}")
+   public Category findByCategoryId(@PathVariable Long categoryId) {
+      return categoryRepository.findByCategoryId(categoryId);
+
+   }
+
+   @Override
+   @PutMapping("categories/categorieId/{categorieId}")
+   public Category updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
+      Category categoryUpdated = categoryRepository.findByCategoryId(categoryId);
+      // TODO : update category
+      // categoryUpdated.setcategoryname(category.getcategoryname());
+      // categoryUpdated.setFirstName(category.getFirstName());
+      // categoryUpdated.setSecondName(category.getSecondName());
+
+      categoryRepository.save(categoryUpdated);
+      return categoryUpdated;
+   }
+
+   @Override
+   @DeleteMapping("categories/categorieId/{categorieId}")
+   public void deleteCategory(@PathVariable Long categoryId) {
+      categoryRepository.deleteById(categoryId);
+
+   }
+
+   @Override
+   @GetMapping("categories")
+   public List<Category> findAll() {
+      return categoryRepository.findAll();
+
    }
 
 }

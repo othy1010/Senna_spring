@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
+import com.senna.backend.dao.DrugRepository;
 import com.senna.backend.dao.SupplierRepository;
 import com.senna.backend.domain.Category;
+import com.senna.backend.domain.Drug;
 import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
+import com.senna.backend.service.DrugService;
 import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
@@ -28,38 +31,70 @@ import com.senna.backend.service.SupplierService;
 @Transactional
 @RestController
 @RequestMapping("api/")
-public class SupplierServiceImpl implements SupplierService {
+public class DrugServiceImpl implements DrugService {
    @Autowired
-   private SupplierRepository supplierRepository;
+   private DrugRepository drugRepository;
 
    @Override
-   public Supplier saveSupplier(Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier findBySupplierId(Long supplierId) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public Supplier updateSupplier(Long supplierId, Supplier supplier) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
-   @Override
-   public void deleteSupplier(Long supplierId) {
-      // TODO Auto-generated method stub
+   @PostMapping("drugs")
+   public Drug saveDrug(@RequestBody Drug drug) {
+      return drugRepository.save(drug);
 
    }
 
    @Override
-   public List<Supplier> findAll() {
-      // TODO Auto-generated method stub
-      return null;
+   @GetMapping("drugs/drugId/{drugId}")
+   public Drug findByDrugId(@PathVariable Long drugId) {
+      return drugRepository.findByDrugId(drugId);
+
+   }
+
+   @Override
+   @PutMapping("drugs/drugId/{drugId}")
+   public Drug updateDrug(@PathVariable Long drugId, @RequestBody Drug drug) {
+      Drug drugUpdated = drugRepository.findByDrugId(drugId);
+      // TODO : update drug
+      // drugUpdated.setdrugname(drug.getdrugname());
+      // drugUpdated.setFirstName(drug.getFirstName());
+      // drugUpdated.setSecondName(drug.getSecondName());
+
+      drugRepository.save(drugUpdated);
+      return drugUpdated;
+   }
+
+   @Override
+   @DeleteMapping("drugs/drugId/{drugId}")
+   public void deleteDrug(@PathVariable Long drugId) {
+      drugRepository.deleteById(drugId);
+
+   }
+
+   @Override
+   @GetMapping("drugs/drugUsage/{drugUsage}")
+   public List<Drug> findAllByDrugUsageLike(@PathVariable String drugUsage) {
+      return drugRepository.findAllByDrugUsageLike(drugUsage);
+
+   }
+
+   @Override
+   @GetMapping("drugs/drugName/{drugName}")
+   public Drug findByDrugNameLike(@PathVariable String drugName) {
+      return drugRepository.findByDrugNameLike(drugName);
+
+   }
+
+   @Override
+   @GetMapping("drugs/drugSupplierId/{drugSupplierId}")
+   public List<Drug> findAllByDrugSupplierId(@PathVariable Long drugSupplierId) {
+      return drugRepository.findAllByDrugSupplierId(drugSupplierId);
+
+   }
+
+   @Override
+   @GetMapping("drugs")
+   public List<Drug> findAll() {
+      return drugRepository.findAll();
+
    }
 
 }

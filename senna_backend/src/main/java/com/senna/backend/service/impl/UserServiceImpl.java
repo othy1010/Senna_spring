@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.senna.backend.dao.Token;
 import com.senna.backend.dao.UserRepository;
 import com.senna.backend.domain.User;
+import com.senna.backend.service.UserService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
    @GetMapping("users")
    public List<User> getUsers() {
-      return this.userRepo.findAll();
+      return userRepo.findAll();
    }
 
    @Override
@@ -79,22 +80,10 @@ public class UserServiceImpl implements UserService {
    public User updateUser(@PathVariable Long userId, @RequestBody User user) {
       User userUpdated = userRepo.findByUserId(userId);
 
-      userUpdated.setUsername(user.getUsername());
-      userUpdated.setFirstName(user.getFirstName());
-      userUpdated.setSecondName(user.getSecondName());
-      userUpdated.setSexe(user.getSexe());
-      userUpdated.setIsConfirmed(user.getIsConfirmed());
-      userUpdated.setIsAdmin(user.getIsAdmin());
-      userUpdated.setEmail(user.getEmail());
-      userUpdated.setPassword(user.getPassword());
-      userUpdated.setCountry(user.getCountry());
-      userUpdated.setCity(user.getCity());
-      userUpdated.setAddress(user.getAddress());
-      userUpdated.setPhone(user.getPhone());
-      userUpdated.setPaymentAccount(user.getPaymentAccount());
-      userUpdated.setCardNumber(user.getCardNumber());
-      userUpdated.setCvv(user.getCvv());
-      userUpdated.setExpireDate(user.getExpireDate());
+      // userUpdated.setUsername(user.getUsername());
+      // userUpdated.setFirstName(user.getFirstName());
+      // userUpdated.setSecondName(user.getSecondName());
+
       userRepo.save(userUpdated);
       return userUpdated;
    }

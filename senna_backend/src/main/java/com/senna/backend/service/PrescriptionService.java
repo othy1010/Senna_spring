@@ -9,9 +9,9 @@ public interface PrescriptionService {
 
    Prescription findByPrescriptionId(Long prescriptionId);
 
-   List<Prescription> findAllByPatientId(Long UserId);
+   List<Prescription> findAllByPatientId(Long patientId);
 
-   List<Prescription> findAllByDoctorId(Long DoctorId);
+   List<Prescription> findAllByDoctorId(Long doctorId);
 
    Prescription updatePrescription(Long prescriptionId, Prescription prescription);
 
