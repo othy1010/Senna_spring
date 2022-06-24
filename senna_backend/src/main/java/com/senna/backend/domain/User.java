@@ -47,6 +47,9 @@ public class User {
     @Column(name = "role", nullable = false, columnDefinition = "TEXT")
     private String role;
 
+    @Column(name = "isActive", nullable = false, columnDefinition = "BOOLEAN")
+    private Boolean isActive;
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
