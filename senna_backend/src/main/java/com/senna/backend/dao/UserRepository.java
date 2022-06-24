@@ -9,16 +9,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserId(Long userId);
 
-    User findByCountry(String country);
+    // User findByCountry(String country);
 
-    User findByToken(String token);
+    // User findByToken(String token);
 
-    List<User> findAllByIsConfirmed(Boolean isConfirmed);
+    // List<User> findAllByIsConfirmed(Boolean isConfirmed);
 
-    List<User> findByUsername(String username);
+    // List<User> findByUsername(String username);
 
-    List<User> findAllByRole(String role);
+    // List<User> findAllByRole(String role);
 
-    User findByEmail(String email);
+    // User findByEmail(String email);
 
 }

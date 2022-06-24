@@ -1,11 +1,8 @@
--- -- USERS TABLE
--- INSERT INTO
---     users (user_id, first_name, last_name, email, birthday, location, password)
--- VALUES
---     (nextval('user_sequence'), 'Yassir', 'Douslimi', 'yassirdouslimi@gmail.com', current_timestamp, 'Kenitra', 'password'),
---     (nextval('user_sequence'), 'Hicham', 'Talbi', 'hicham_talbi@gmail.com', current_timestamp, 'Casablanca', 'password'),
---     (nextval('user_sequence'), 'Hanane', 'Mouhim', 'hanane_mouhim@gmail.com', current_timestamp, 'Casablanca', 'password'),
---     (nextval('user_sequence'), 'Youssef', 'Sirajeddine', 'youssef_siraj@gmail.com', current_timestamp, 'Casablanca', 'password');
+-- USERS TABLE
+INSERT INTO
+    users (user_id, first_name, last_name, email, birthday, location, password)
+VALUES
+    (nextval('user_sequence'), 'othmane', 'elkarmy','bh111111' 'othmane@gmail.com', current_timestamp, 'casa', 'password','doctor',true);
 
 -- -- PROVIDER TABLE
 -- INSERT INTO

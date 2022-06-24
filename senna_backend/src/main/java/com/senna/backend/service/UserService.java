@@ -7,13 +7,7 @@ public interface UserService {
 
     User saveUser(User user);
 
-    User findByEmail(String email);
-
     User findByUserId(Long idU);
-
-    List<User> findByUsername(String username);
-
-    User findByToken(String token);
 
     User updateUser(Long idU, User user);
 

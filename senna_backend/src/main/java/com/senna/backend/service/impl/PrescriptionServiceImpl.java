@@ -50,14 +50,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     }
 
     @Override
-    @GetMapping("prescriptions/prescriptionId/{prescriptionId}")
+    @GetMapping("prescriptions/patientId/{patientId}")
     public List<Prescription> findAllByPatientId(@PathVariable Long patientId) {
 
         return prescriptionRepository.findAllByPatientId(patientId);
     }
 
     @Override
-    @GetMapping("prescriptions/prescriptionId/{prescriptionId}")
+    @GetMapping("prescriptions/doctorId/{doctorId}")
     public List<Prescription> findAllByDoctorId(@PathVariable Long doctorId) {
 
         return prescriptionRepository.findAllByDoctorId(doctorId);

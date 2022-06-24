@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity(name = "order")
+@Entity(name = "orders")
 public class Order {
    @Id
    @SequenceGenerator(name = "orderSequence", sequenceName = "orderSequence", allocationSize = 1)
@@ -33,9 +33,11 @@ public class Order {
    @Column(name = "orderDate", nullable = false, columnDefinition = "TIMESTAMP")
    private LocalDateTime orderDate;
 
-   @OneToMany
-   @JoinTable(name = "drug", joinColumns = @JoinColumn(name = "orderId", referencedColumnName = "orderId"), inverseJoinColumns = @JoinColumn(name = "drugId", referencedColumnName = "drugId"))
-   private List<Drug> drugs;
+   // @OneToMany
+   // @JoinTable(name = "drug", joinColumns = @JoinColumn(name = "orderId",
+   // referencedColumnName = "orderId"), inverseJoinColumns = @JoinColumn(name =
+   // "drugId", referencedColumnName = "drugId"))
+   // private List<Drug> drugs;
 
    @Column(name = "orderStatus", nullable = false, columnDefinition = "TEXT")
    private String orderStatus;
@@ -44,10 +46,11 @@ public class Order {
    public boolean equals(Object o) {
       if (this == o)
          return true;
-      if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
+      if (o == null || getClass() != o.getClass())
          return false;
       Order order = (Order) o;
-      return orderId != null && Objects.equals(orderId, order.orderId);
+      return orderId != null &&
+            Objects.equals(orderId, order.orderId);
    }
 
    @Override

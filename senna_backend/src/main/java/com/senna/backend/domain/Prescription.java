@@ -52,10 +52,10 @@ public class Prescription {
     @Column(name = "doctorId")
     private Long doctorId;
 
-    @Fetch(value = FetchMode.SUBSELECT)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "drugId")
-    private List<Drug> drugs= new ArrayList<Drug>();;
+    // @Fetch(value = FetchMode.SUBSELECT)
+    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinColumn(name = "drugId")
+    // private List<Drug> drugs= new ArrayList<Drug>();;
 
     @Override
     public boolean equals(Object o) {

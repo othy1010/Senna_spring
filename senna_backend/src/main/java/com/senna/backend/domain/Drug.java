@@ -4,8 +4,10 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,8 +59,10 @@ public class Drug {
    @Column(name = "drugSideEffects")
    private String drugSideEffects;
 
-   @Column(name = "components")
-   private List<Composant> components;
+   // @Fetch(value = FetchMode.SUBSELECT)
+   // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   // @JoinColumn(name = "composantId")
+   // private List<Composant> components = new ArrayList<Composant>();
 
    @Override
    public boolean equals(Object o) {

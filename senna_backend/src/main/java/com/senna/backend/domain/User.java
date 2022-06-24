@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,9 +38,6 @@ public class User {
     @Column(name = "address", nullable = false, columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "token", nullable = false, columnDefinition = "TEXT")
-    private String token;
-
     @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;
 
@@ -54,7 +51,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o))
+        if (o == null || getClass() != o.getClass())
             return false;
         User user = (User) o;
         return userId != null && Objects.equals(userId, user.userId);
@@ -62,6 +59,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(userId);
     }
 }

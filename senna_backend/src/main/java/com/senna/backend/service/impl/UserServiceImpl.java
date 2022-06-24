@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
    @Override
    @PostMapping("users")
    public User saveUser(@RequestBody User user) {
-      user.setToken(new Token().nextString());
+
       User userN = userRepo.save(user);
       // String sub = "Creation du compte";
       // String html = "<h1>Creation de votre compte</h1><p>Vous trouvez ci-joint les
@@ -51,28 +51,9 @@ public class UserServiceImpl implements UserService {
    }
 
    @Override
-   @GetMapping("users/email/{email}")
-   public User findByEmail(@PathVariable String email) {
-      return userRepo.findByEmail(email);
-   }
-
-   @Override
    @GetMapping("users/userId/{userId}")
    public User findByUserId(@PathVariable Long userId) {
       return userRepo.findByUserId(userId);
-   }
-
-   @Override
-   @GetMapping("users/username/{username}")
-   public List<User> findByUsername(@PathVariable String username) {
-      return userRepo.findByUsername(username);
-
-   }
-
-   @Override
-   @GetMapping("users/token/{token}")
-   public User findByToken(@PathVariable String token) {
-      return userRepo.findByToken(token);
    }
 
    @Override
