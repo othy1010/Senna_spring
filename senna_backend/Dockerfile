@@ -12,4 +12,4 @@ RUN gradle assemble
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","./build/libs/backend-0.0.1-SNAPSHOT.war"]
+ENTRYPOINT ["java","-jar","-Xmx256m","./build/libs/backend-0.0.1-SNAPSHOT.war"]
