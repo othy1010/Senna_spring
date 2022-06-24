@@ -4,10 +4,10 @@ services:
     frontend:
         # image: 'ignema/bricoly-frontend'
         build: 
-            context: ./senna_frontend/
+            context: ./senna_front/
         ports: 
             - 3000:3000
-        container_name: senna_frontend
+        container_name: senna_front
     backend:
         # image: 'ignema/bricoly-backend'
         build:
@@ -15,6 +15,11 @@ services:
         ports: 
             - 8080:8080
         container_name: senna_backend
+        sysctls:
+
+            net.core.somaxconn: 512
+            kernel.shmmax:  18102030100020003000
+            kernel.msgmax:  4000
         depends_on:
             - db
         environment:
