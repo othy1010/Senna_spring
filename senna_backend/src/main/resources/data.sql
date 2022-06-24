@@ -1,8 +1,8 @@
 -- USERS TABLE
 INSERT INTO
-    users (user_id, first_name, last_name, email, birthday, location, password)
+    users (user_Id, first_Name, last_Name, CIN,email, birthday, address, password,role,is_Active)
 VALUES
-    (nextval('user_sequence'), 'othmane', 'elkarmy','bh111111' 'othmane@gmail.com', current_timestamp, 'casa', 'password','doctor',true);
+    (nextval('user_sequence'), 'othmane', 'elkarmy','bh111111', 'othmane@gmail.com', current_timestamp, 'casa', 'password','doctor',true);
 
 -- -- PROVIDER TABLE
 -- INSERT INTO

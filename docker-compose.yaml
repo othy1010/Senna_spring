@@ -15,20 +15,14 @@ services:
         ports: 
             - 8080:8080
         container_name: senna_backend
-        sysctls:
-
-            net.core.somaxconn: 512
-            kernel.shmmax:  18102030100020003000
-            kernel.msgmax:  4000
+      
         depends_on:
             - db
         environment:
             - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/senna
             - SPRING_DATASOURCE_USERNAME=senna
-            # Make sure to change this in prod!!
             - SPRING_DATASOURCE_PASSWORD=12345
-            - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop # Needs to be set to 'update' in prod
-            ###################################
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop 
           
     db:
         image: 'postgres:13.1-alpine'
