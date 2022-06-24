@@ -23,6 +23,8 @@ services:
             - SPRING_DATASOURCE_USERNAME=senna
             - SPRING_DATASOURCE_PASSWORD=12345
             - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop 
+            - SPRING_SECURITY_USER_NAME = senna
+            - SPRING_SECURITY_USER_PASSWORD = 12345
           
     db:
         image: 'postgres:13.1-alpine'
