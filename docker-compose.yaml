@@ -2,14 +2,14 @@ version: '2'
 
 services:
     frontend:
-        # image: 'ignema/bricoly-frontend'
+        image: 'othy1010/senna-frontend'
         build: 
             context: ./senna_front/
         ports: 
             - 3000:3000
         container_name: senna_front
     backend:
-        # image: 'ignema/bricoly-backend'
+        image: 'othy1010/senna-backend'
         build:
             context: ./senna_backend/
         ports: 
