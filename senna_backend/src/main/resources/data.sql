@@ -34,7 +34,7 @@ VALUES (
         'password',
         'Patient',
         TRUE
-    ) (
+    ), (
         NEXTVAL('user_sequence'),
         'Jinx',
         'Jinx',
@@ -45,7 +45,7 @@ VALUES (
         'password',
         'doctor',
         FALSE
-    ) (
+    ), (
         NEXTVAL('user_sequence'),
         'Silco',
         'Silco',
@@ -186,13 +186,13 @@ VALUES (
         NEXTVAL('certification_sequence'),
         current_timestamp,
         'certification_1',
-        'certification_1',
+        10,
         1
     ), (
         NEXTVAL('certification_sequence'),
         current_timestamp,
         'certification_2',
-        'certification_2',
+        20,
         2
     );
 

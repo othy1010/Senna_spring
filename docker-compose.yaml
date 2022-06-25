@@ -2,14 +2,14 @@ version: '2'
 
 services:
     frontend:
-        image: 'othy1010/senna-frontend'
+        # image: 'othy1010/senna-frontend'
         build: 
             context: ./senna_front/
         ports: 
             - 3000:3000
         container_name: senna_front
     backend:
-        image: 'othy1010/senna-backend'
+        # image: 'othy1010/senna-backend'
         build:
             context: ./senna_backend/
         ports: 

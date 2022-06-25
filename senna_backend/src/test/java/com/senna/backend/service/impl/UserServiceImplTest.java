@@ -17,6 +17,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -30,6 +32,7 @@ import org.junit.runner.RunWith;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @RunWith(SpringRunner.class)
+@WithMockUser(username = "senna", password = "12345")
 @WebMvcTest(UserServiceImpl.class)
 public class UserServiceImplTest {
 
@@ -43,6 +46,9 @@ public class UserServiceImplTest {
     void getUsers() throws Exception {
         mvc.perform(get("/api/users").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+        // .andExpect(jsonPath("$", hasSize(4)))
+        // .andExpect(jsonPath("$[0].first_Name", is("othmane")));
+        ;
     }
 
     @Test
@@ -52,33 +58,31 @@ public class UserServiceImplTest {
         userTest.setLastName("elkarmy");
         userTest.setCIN("bh111111");
         userTest.setEmail("othmane@gmail.com");
-        //userTest.setBirthday(LocalDateTime.now());
+        // userTest.setBirthday(LocalDateTime.now());
         userTest.setAddress("casa");
         userTest.setPassword("password");
         userTest.setRole("doctor");
         userTest.setIsActive(true);
 
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        String requestJson=ow.writeValueAsString(userTest);
+        String requestJson = ow.writeValueAsString(userTest);
 
         mvc.perform(post("/api/users").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andExpect(status().isOk());
+                .andExpect(status().isForbidden());// because of CSRF ATTACKS
     }
 
     @Test
     void findByUserId() throws Exception {
-        mvc.perform(get("/api/users/userId/{userId}",1).contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/api/users/userId/{userId}", 2).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
-
     @Test
     void deleteUser() throws Exception {
-        mvc.perform(delete("/api/users/userId/{userId}",1))
-                .andExpect(status().isOk());
+        mvc.perform(delete("/api/users/userId/{userId}", 1))
+                .andExpect(status().isForbidden());
 
     }
 }
