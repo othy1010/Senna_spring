@@ -1,7 +1,10 @@
 package com.senna.backend.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import com.senna.backend.domain.Drug;
+import com.senna.backend.service.DrugService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,15 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.DrugRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Drug;
-import com.senna.backend.domain.Supplier;
-import com.senna.backend.service.CategoryService;
-import com.senna.backend.service.DrugService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -53,11 +48,32 @@ public class DrugServiceImpl implements DrugService {
    @PutMapping("drugs/drugId/{drugId}")
    public Drug updateDrug(@PathVariable Long drugId, @RequestBody Drug drug) {
       Drug drugUpdated = drugRepository.findByDrugId(drugId);
-      // TODO : update drug
-      // drugUpdated.setdrugname(drug.getdrugname());
-      // drugUpdated.setFirstName(drug.getFirstName());
-      // drugUpdated.setSecondName(drug.getSecondName());
 
+      drugUpdated.setDrugName(drug.getDrugName());
+      drugUpdated.setDrugDescription(drug.getDrugDescription());
+      drugUpdated.setDrugPrice(drug.getDrugPrice());
+      drugUpdated.setDrugQuantity(drug.getDrugQuantity());
+      drugUpdated.setDrugCreatedAt(drug.getDrugCreatedAt());
+      drugUpdated.setDrugStock(drug.getDrugStock());
+      drugUpdated.setNeedPrescription(drug.getNeedPrescription());
+      drugUpdated.setDrugCategoryId(drug.getDrugCategoryId());
+      drugUpdated.setDrugSupplierId(drug.getDrugSupplierId());
+      drugUpdated.setDrugUsage(drug.getDrugUsage());
+      drugUpdated.setDrugWarnings(drug.getDrugWarnings());
+      drugUpdated.setDrugSideEffects(drug.getDrugSideEffects());
+
+      // drugUpdated.setDrugName("doliprane");
+      // drugUpdated.setDrugDescription("doliprane pour maux de tete");
+      // drugUpdated.setDrugPrice(25.50);
+      // drugUpdated.setDrugQuantity(20);
+      // drugUpdated.setDrugCreatedAt(LocalDateTime.now());
+      // drugUpdated.setDrugStock(200);
+      // drugUpdated.setNeedPrescription(false);
+      // drugUpdated.setDrugCategoryId(1L);
+      // drugUpdated.setDrugSupplierId(1L);
+      // drugUpdated.setDrugUsage("maux de tete");
+      // drugUpdated.setDrugWarnings("diabetique");
+      // drugUpdated.setDrugSideEffects("maux de tete");
       drugRepository.save(drugUpdated);
       return drugUpdated;
    }

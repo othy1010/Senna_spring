@@ -2,6 +2,7 @@ package com.senna.backend.service.impl;
 
 import java.util.List;
 
+import com.senna.backend.domain.Composant;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,15 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.ComposantRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Composant;
-import com.senna.backend.domain.Supplier;
-import com.senna.backend.service.CategoryService;
 import com.senna.backend.service.ComposantService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -52,7 +46,6 @@ public class ComposantServiceImpl implements ComposantService {
    @Override
    @DeleteMapping("composants/composantId/{composantId}")
    public void deleteComposant(@PathVariable Long composantId) {
-      // TODO Auto-generated method stub
       composantRepository.deleteById(composantId);
 
    }
@@ -61,10 +54,8 @@ public class ComposantServiceImpl implements ComposantService {
    @PutMapping("composants/composantId/{composantId}")
    public Composant updateComposant(@PathVariable Long composantId, @RequestBody Composant composant) {
       Composant composantUpdated = composantRepository.findByComposantId(composantId);
-      // TODO : update composant
-      // composantUpdated.setcomposantname(composant.getcomposantname());
-      // composantUpdated.setFirstName(composant.getFirstName());
-      // composantUpdated.setSecondName(composant.getSecondName());
+
+      composantUpdated.setComposantName(composant.getComposantName());
 
       composantRepository.save(composantUpdated);
       return composantUpdated;

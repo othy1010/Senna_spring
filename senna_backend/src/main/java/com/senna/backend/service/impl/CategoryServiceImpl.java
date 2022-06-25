@@ -2,6 +2,7 @@ package com.senna.backend.service.impl;
 
 import java.util.List;
 
+import com.senna.backend.domain.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -17,11 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.senna.backend.dao.CategoryRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Supplier;
 import com.senna.backend.service.CategoryService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -50,10 +47,9 @@ public class CategoryServiceImpl implements CategoryService {
    @PutMapping("categories/categorieId/{categorieId}")
    public Category updateCategory(@PathVariable Long categoryId, @RequestBody Category category) {
       Category categoryUpdated = categoryRepository.findByCategoryId(categoryId);
-      // TODO : update category
-      // categoryUpdated.setcategoryname(category.getcategoryname());
-      // categoryUpdated.setFirstName(category.getFirstName());
-      // categoryUpdated.setSecondName(category.getSecondName());
+
+      categoryUpdated.setCategoryName(category.getCategoryName());
+      categoryUpdated.setCategoryDescription(category.getCategoryDescription());
 
       categoryRepository.save(categoryUpdated);
       return categoryUpdated;

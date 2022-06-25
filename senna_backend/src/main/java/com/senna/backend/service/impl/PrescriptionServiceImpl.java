@@ -2,6 +2,8 @@ package com.senna.backend.service.impl;
 
 import java.util.List;
 
+import com.senna.backend.domain.Prescription;
+import com.senna.backend.service.PrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,15 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.PrescriptionRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Prescription;
-import com.senna.backend.domain.Supplier;
-import com.senna.backend.service.CategoryService;
-import com.senna.backend.service.PrescriptionService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -68,10 +62,13 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public Prescription updatePrescription(@PathVariable Long prescriptionId, @RequestBody Prescription prescription) {
 
         Prescription prescriptionUpdated = prescriptionRepository.findByPrescriptionId(prescriptionId);
-        // TODO : update prescription
-        // prescriptionUpdated.petPrescriptionname(prescription.petPrescriptionname());
-        // prescriptionUpdated.setFirstName(prescription.getFirstName());
-        // prescriptionUpdated.setSecondName(prescription.getSecondName());
+
+        prescriptionUpdated.setPrescriptionTitle(prescription.getPrescriptionTitle());
+        prescriptionUpdated.setPrescriptionDate(prescription.getPrescriptionDate());
+        prescriptionUpdated.setPrescriptionDescription(prescription.getPrescriptionDescription());
+        prescriptionUpdated.setPrescriptionStatus(prescription.getPrescriptionStatus());
+        prescriptionUpdated.setPatientId(prescription.getPatientId());
+        prescriptionUpdated.setDoctorId(prescription.getDoctorId());
 
         prescriptionRepository.save(prescriptionUpdated);
         return prescriptionUpdated;
@@ -80,7 +77,6 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     @DeleteMapping("prescriptions/prescriptionId/{prescriptionId}")
     public void deletePrescription(@PathVariable Long prescriptionId) {
-        // TODO Auto-generated method stub
         prescriptionRepository.deleteById(prescriptionId);
 
     }

@@ -2,6 +2,8 @@ package com.senna.backend.service.impl;
 
 import java.util.List;
 
+import com.senna.backend.domain.Order;
+import com.senna.backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,15 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.OrderRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Order;
-import com.senna.backend.domain.Supplier;
-import com.senna.backend.service.CategoryService;
-import com.senna.backend.service.OrderService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -64,6 +58,13 @@ public class OrderServiceImpl implements OrderService {
         // orderUpdated.setordername(order.getordername());
         // orderUpdated.setFirstName(order.getFirstName());
         // orderUpdated.setSecondName(order.getSecondName());
+
+        orderUpdated.setOrderId(order.getOrderId());
+        orderUpdated.setPatientId(order.getPatientId());
+        orderUpdated.setTotalPrice(order.getTotalPrice());
+        orderUpdated.setOrderTrackNumber(order.getOrderTrackNumber());
+        orderUpdated.setOrderDate(order.getOrderDate());
+        orderUpdated.setOrderStatus(order.getOrderStatus());
 
         orderRepository.save(orderUpdated);
         return orderUpdated;

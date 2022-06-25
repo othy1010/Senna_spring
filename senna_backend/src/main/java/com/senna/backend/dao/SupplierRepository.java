@@ -1,6 +1,7 @@
 package com.senna.backend.dao;
 
 import java.util.List;
+
 import com.senna.backend.domain.Supplier;
 import org.springframework.data.jpa.repository.JpaRepository;
 

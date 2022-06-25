@@ -2,6 +2,7 @@ package com.senna.backend.service.impl;
 
 import java.util.List;
 
+import com.senna.backend.domain.Certification;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -16,15 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.senna.backend.dao.CategoryRepository;
 import com.senna.backend.dao.CertificationRepository;
-import com.senna.backend.dao.SupplierRepository;
-import com.senna.backend.domain.Category;
-import com.senna.backend.domain.Certification;
-import com.senna.backend.domain.Supplier;
-import com.senna.backend.service.CategoryService;
 import com.senna.backend.service.CertificationService;
-import com.senna.backend.service.SupplierService;
 
 @CrossOrigin(origins = "http://localhost:3000/")
 @Service
@@ -53,12 +47,12 @@ public class CertificationServiceImpl implements CertificationService {
    @PutMapping("certifications/certificationId/{certificationId}")
    public Certification updateCertification(@PathVariable Long certificationId,
          @RequestBody Certification certification) {
-      // TODO Auto-generated method stub
       Certification certificationUpdated = certificationRepository.findByCertificationId(certificationId);
-      // TODO : update certification
-      // certificationUpdated.setcertificationname(certification.getcertificationname());
-      // certificationUpdated.setFirstName(certification.getFirstName());
-      // certificationUpdated.setSecondName(certification.getSecondName());
+
+      certificationUpdated.setDoctorId(certification.getDoctorId());
+      certificationUpdated.setCertificationName(certification.getCertificationName());
+      certificationUpdated.setCertificationNumber(certification.getCertificationNumber());
+      certificationUpdated.setCertificationDate(certification.getCertificationDate());
 
       certificationRepository.save(certificationUpdated);
       return certificationUpdated;
