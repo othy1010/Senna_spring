@@ -37,6 +37,8 @@ jobs:
         distribution: 'temurin'
     - name: Grant execute permission for gradlew
       run: cd senna_backend && chmod +x ./gradlew
+    - name: print the directory
+      run: pwd
     - name: Build with Gradle
       run: cd senna_backend && ./gradlew build
         
