@@ -1,103 +1,209 @@
 -- USERS TABLE
 INSERT INTO
-    users (user_Id, first_Name, last_Name, CIN,email, birthday, address, password,role,is_Active)
-VALUES
-    (nextval('user_sequence'), 'othmane', 'elkarmy','bh111111', 'othmane@gmail.com', current_timestamp, 'casa', 'password','doctor',true);
+    users (
+        user_Id,
+        first_Name,
+        last_Name,
+        CIN,
+        email,
+        birthday,
+        address,
+        password,
+        role,
+        is_Active
+    )
+VALUES (
+        NEXTVAL('user_sequence'),
+        'othmane',
+        'elkarmy',
+        'bh111111',
+        'othmane@gmail.com',
+        current_timestamp,
+        'casa',
+        'password',
+        'doctor',
+        TRUE
+    ), (
+        NEXTVAL('user_sequence'),
+        'Fati',
+        'Errami',
+        'bh222222',
+        'Fati@gmail.com',
+        current_timestamp,
+        'casa',
+        'password',
+        'Patient',
+        TRUE
+    ) (
+        NEXTVAL('user_sequence'),
+        'Jinx',
+        'Jinx',
+        'bh333333',
+        'Jinx@gmail.com',
+        current_timestamp,
+        'beltover',
+        'password',
+        'doctor',
+        FALSE
+    ) (
+        NEXTVAL('user_sequence'),
+        'Silco',
+        'Silco',
+        'bh444444',
+        'Silco@gmail.com',
+        current_timestamp,
+        'casa',
+        'password',
+        'Patient',
+        TRUE
+    );
 
--- -- PROVIDER TABLE
--- INSERT INTO
---     provider (provider_id, bio, user_id)
--- VALUES
---     (2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies consequat eros id lobortis. Nam magna purus, fringilla sit amet tempus sit amet, faucibus in elit. Mauris iaculis, arcu dictum imperdiet molestie, risus libero blandit nisl, sed blandit libero neque quis ante. Morbi sit amet velit fringilla, ultrices sapien et, pharetra velit. Aliquam vitae eleifend neque.', 2),
---     (3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies consequat eros id lobortis. Nam magna purus, fringilla sit amet tempus sit amet, faucibus in elit. Mauris iaculis, arcu dictum imperdiet molestie, risus libero blandit nisl, sed blandit libero neque quis ante. Morbi sit amet velit fringilla, ultrices sapien et, pharetra velit. Aliquam vitae eleifend neque.', 3),
---     (4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ultricies consequat eros id lobortis. Nam magna purus, fringilla sit amet tempus sit amet, faucibus in elit. Mauris iaculis, arcu dictum imperdiet molestie, risus libero blandit nisl, sed blandit libero neque quis ante. Morbi sit amet velit fringilla, ultrices sapien et, pharetra velit. Aliquam vitae eleifend neque.', 4);
--- --
--- -- CUSTOMER TABLE
--- INSERT INTO
---     customer (customer_id, user_id)
--- VALUES
---     (1, 1);
+-- Supplier TABLE
+INSERT INTO
+    supplier (supplier_id, supplier_description, supplier_name)
+VALUES (
+        NEXTVAL('supplier_sequence'),
+        'second supplier',
+        'sup_2'
+    ), (
+        NEXTVAL('supplier_sequence'),
+        'first supplier',
+        'sup_1'
+    );
 
--- -- DAYS TABLE
--- INSERT INTO
---     days (day_id, name, provider_id)
--- VALUES
---     (nextval('day_sequence'), 'Mon', 2),
---     (nextval('day_sequence'), 'Tue', 2),
---     (nextval('day_sequence'), 'Fri', 2),
---     (nextval('day_sequence'), 'Tue', 3),
---     (nextval('day_sequence'), 'Thu', 3),
---     (nextval('day_sequence'), 'Wed', 4),
---     (nextval('day_sequence'), 'Sat', 4),
---     (nextval('day_sequence'), 'Sun', 4);
+INSERT INTO
+    prescription (
+        prescription_id,
+        doctor_id,
+        patient_id,
+        prescription_date,
+        prescription_description,
+        prescription_status,
+        prescription_name
+    )
+VALUES (
+        NEXTVAL('prescription_sequence'),
+        1,
+        1,
+        current_timestamp,
+        'first prescription',
+        'pending',
+        'pres_1'
+    ), (
+        NEXTVAL('prescription_sequence'),
+        1,
+        2,
+        current_timestamp,
+        'second prescription',
+        'pending',
+        'pres_2'
+    );
 
--- -- ICON TABLE
--- INSERT INTO
---     icon (icon_id, icon_name)
--- VALUES
---     (nextval('icon_sequence'), 'cable'),
---     (nextval('icon_sequence'), 'hammer'),
---     (nextval('icon_sequence'), 'box'),
---     (nextval('icon_sequence'), 'fire'),
---     (nextval('icon_sequence'), 'pen'),
---     (nextval('icon_sequence'), 'terminal');
+INSERT INTO
+    orders (
+        order_id,
+        order_date,
+        order_status,
+        order_track_number,
+        patient_id,
+        total_price
+    )
+VALUES (
+        NEXTVAL('order_sequence'),
+        current_timestamp,
+        'pending',
+        '123456789',
+        1,
+        100
+    ), (
+        NEXTVAL('order_sequence'),
+        current_timestamp,
+        'pending',
+        '123456789',
+        2,
+        200
+    );
 
--- -- SKILL TABLE
--- INSERT INTO
---     skill (skill_id, skill_name, icon_id, provider_id)
--- VALUES
---     (nextval('skill_sequence'), 'name', 1, 2),
---     (nextval('skill_sequence'), 'name', 2, 2),
---     (nextval('skill_sequence'), 'name', 3, 2),
---     (nextval('skill_sequence'), 'name', 4, 3),
---     (nextval('skill_sequence'), 'name', 5, 3),
---     (nextval('skill_sequence'), 'name', 6, 3),
---     (nextval('skill_sequence'), 'name', 3, 4),
---     (nextval('skill_sequence'), 'name', 5, 4),
---     (nextval('skill_sequence'), 'name', 1, 4);
+INSERT INTO
+    drug (
+        drug_id,
+        drug_category_id,
+        drug_created_at,
+        drug_description,
+        drug_name,
+        drug_price,
+        drug_quantity,
+        drug_side_effects,
+        drug_stock,
+        drug_supplier_id,
+        drug_usage,
+        drug_warnings,
+        need_prescription
+    )
+VALUES (
+        NEXTVAL('drug_sequence'),
+        1,
+        current_timestamp,
+        'first drug',
+        'drug_1',
+        100,
+        10,
+        'no side effects',
+        10,
+        1,
+        'no usage',
+        'no warnings',
+        TRUE
+    ), (
+        NEXTVAL('drug_sequence'),
+        1,
+        current_timestamp,
+        'second drug',
+        'drug_2',
+        200,
+        20,
+        'no side effects',
+        20,
+        1,
+        'no usage',
+        'no warnings',
+        TRUE
+    );
 
--- -- CATEGORY TABLE
--- INSERT INTO
---     category (category_id, category_name)
--- VALUES
---     (nextval('category_sequence'), 'Plumber'),
---     (nextval('category_sequence'), 'Electrician'),
---     (nextval('category_sequence'), 'Mechanic'),
---     (nextval('category_sequence'), 'Tutor'),
---     (nextval('category_sequence'), 'Cleaner'),
---     (nextval('category_sequence'), 'Chef'),
---     (nextval('category_sequence'), 'Other');
+INSERT INTO
+    composant (composant_id, composant_name)
+VALUES (NEXTVAL('composant_sequence'), 'composant_1'), (NEXTVAL('composant_sequence'), 'composant_2');
 
--- -- OFFER TABLE
--- INSERT INTO
---     offer (offer_id, description, offer_name, price, rating, provider_id, icon_id, category_id)
--- VALUES
---     (nextval('offer_sequence'), 'If your house has any plumbing issues, i will take care of them', 'Plumbing House', 200, 3, 2, 3, 1),
---     (nextval('offer_sequence'), 'I will fix your car', 'Fixing Car', 136, 5, 3, 3, 3),
---     (nextval('offer_sequence'), 'Cleaning bedrooms living room etc.', 'Clean House', 99, 4, 3, 3, 5),
---     (nextval('offer_sequence'), 'Mow the lawn', 'Mow the lawn', 50, 2, 2, 3, 1),
---     (nextval('offer_sequence'), 'Write a letter', 'Write a letter', 60, 5, 3, 3, 7),
---     (nextval('offer_sequence'), 'Write a poem', 'Write poems', 60, 3, 2, 3, 7),
---     (nextval('offer_sequence'), 'Cook for an occasion', 'Cook for an occasion', 200, 5, 4, 3, 6),
---     (nextval('offer_sequence'), 'Fix ceiling', 'Fix ceiling', 163, 3, 4, 3, 7),
---     (nextval('offer_sequence'), 'Change your tires', 'Change your tires', 60, 1, 2, 3, 3),
---     (nextval('offer_sequence'), 'Teach you math', 'Teach you math', 80, 0, 4, 3, 4),
---     (nextval('offer_sequence'), 'Paint your walls', 'Paint your walls', 130, 5, 4, 3, 7),
---     (nextval('offer_sequence'), 'Take care of your kids', 'Take care of your kids', 100, 3, 2, 3, 7),
---     (nextval('offer_sequence'), 'Drive you to a location', 'Drive you to a location', 40, 2, 3, 3, 7),
---     (nextval('offer_sequence'), 'Deliver groceries to you house', 'Deliver groceries to you house', 30, 2, 3, 3, 6),
---     (nextval('offer_sequence'), 'Fix broken sink', 'Fix broken sink', 80, 3, 4, 3, 1);
+INSERT INTO
+    certification (
+        certification_id,
+        certification_date,
+        certification_name,
+        certification_number,
+        doctor_id
+    )
+VALUES (
+        NEXTVAL('certification_sequence'),
+        current_timestamp,
+        'certification_1',
+        'certification_1',
+        1
+    ), (
+        NEXTVAL('certification_sequence'),
+        current_timestamp,
+        'certification_2',
+        'certification_2',
+        2
+    );
 
--- -- DETAIL TABLE
--- INSERT INTO
---     detail (detail_id, content, offer_id)
--- VALUES
---     (nextval('detail_sequence'), 'Plumbing license', 1),
---     (nextval('detail_sequence'), 'I have my equipments', 1),
---     (nextval('detail_sequence'), 'I can fix pretty much anything', 1);
-
--- -- JOB TABLE
--- INSERT INTO
---     job (job_id, pending, rating, provider_id, offer_id, customer_id)
--- VALUES
---     (nextval('job_sequence'), true, 0, 2, 11, 1);
+INSERT INTO
+    category (category_id, category_description, category_name)
+VALUES (
+        NEXTVAL('category_sequence'),
+        'category_1',
+        'category_1'
+    ), (
+        NEXTVAL('category_sequence'),
+        'category_2',
+        'category_2'
+    );
