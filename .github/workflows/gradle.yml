@@ -36,9 +36,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: Grant execute permission for gradlew
-      run: chmod +x ./senna_backend/gradlew
+      run: cd senna_backend && chmod +x ./gradlew
     - name: Build with Gradle
-      run: ./senna_backend/gradlew build
+      run: cd senna_backend && ./gradlew build
         
 
 
