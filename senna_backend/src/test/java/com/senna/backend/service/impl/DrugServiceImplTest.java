@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
+// import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.core.Is.is;
@@ -27,10 +27,10 @@ import org.junit.runner.RunWith;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@RunWith(SpringRunner.class)
+// @RunWith(SpringRunner.class)
 @WebMvcTest(DrugServiceImpl.class)
-@WithMockUser(username = "senna", password = "12345")
-class DrugServiceImplTest {
+// @WithMockUser(username = "senna", password = "12345")
+public class DrugServiceImplTest {
     @Autowired
     private MockMvc mvc;
 
@@ -41,7 +41,7 @@ class DrugServiceImplTest {
     void saveDrug() throws Exception {
         Drug drugTest = new Drug();
         // drugTest.setDrugId("othmane");
-        drugTest.setDrugCategoryId(1L);
+        // drugTest.setDrugCategoryId(1L);
         // drugTest.setDrugCreatedAt("bh111111");
         drugTest.setDrugName("doliprane");
         drugTest.setDrugPrice(25.50);
@@ -60,7 +60,7 @@ class DrugServiceImplTest {
         String requestJson = ow.writeValueAsString(drugTest);
 
         mvc.perform(post("/api/drugs").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -72,7 +72,7 @@ class DrugServiceImplTest {
     @Test
     void deleteDrug() throws Exception {
         mvc.perform(delete("/api/drugs/drugId/{drugId}", 1))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isOk());
     }
 
     @Test

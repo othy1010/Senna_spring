@@ -54,12 +54,8 @@ public class OrderServiceImpl implements OrderService {
     @PutMapping("orders/orderId/{orderId}")
     public Order updateOrder(@PathVariable Long orderId, @RequestBody Order order) {
         Order orderUpdated = orderRepository.findByOrderId(orderId);
-        // TODO : update order
-        // orderUpdated.setordername(order.getordername());
-        // orderUpdated.setFirstName(order.getFirstName());
-        // orderUpdated.setSecondName(order.getSecondName());
+        
 
-        orderUpdated.setOrderId(order.getOrderId());
         orderUpdated.setPatientId(order.getPatientId());
         orderUpdated.setTotalPrice(order.getTotalPrice());
         orderUpdated.setOrderTrackNumber(order.getOrderTrackNumber());
