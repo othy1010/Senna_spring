@@ -9,8 +9,8 @@ WORKDIR /usr/src
 COPY . /usr/src
 
 # install dependencies
+RUN yarn --netwrok -timeout 100000
 RUN yarn install
-
 # start app
 EXPOSE 3000
 CMD yarn dev
