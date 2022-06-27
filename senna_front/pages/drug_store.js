@@ -1,12 +1,21 @@
 import React from 'react'
 import Header from '../components/Header'
 import { useState } from 'react'
+import DrugService from './api/DrugService'
+import { Button } from '@mui/material'
 
 export async function getStaticProps() {
+   const bk_url = process.env.BACKEND_URL
+   console.log(bk_url, "bk_url")
+
+
    try {
-      const response = await fetch("http://localhost:8080/api/drugs").catch(err => console.log(err))
-      const data = await response.json()
-      console.log(data, "data")
+
+      const data = await DrugService.getDrugs()
+      // const data = await response.json()
+      // console.log(data, "data")
+      console.log(DrugService.getDrugs(), "data")
+
       return {
          props: {
             drugs: data
@@ -16,11 +25,10 @@ export async function getStaticProps() {
       console.error(error);
       return {
          props: {
-            drugs: "error"
+            drugs: { drugCategoryId: "error", drugName: error, drugPrice: "error" }
          }
       }
-      // expected output: ReferenceError: nonExistentFunction is not defined
-      // Note - error messages will vary depending on browser
+
    }
 
 
@@ -32,7 +40,7 @@ function drug_store({ drugs }) {
    return (
       <>
          <Header />
-         {drugs ? <section className="text-gray-600 body-font">
+         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
                <div className="flex flex-wrap -m-4">
 
@@ -45,13 +53,21 @@ function drug_store({ drugs }) {
                         <div className="mt-4">
                            <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{drug.drugCategoryId}</h3>
                            <h2 className="text-gray-900 title-font text-lg font-medium">{drug.drugName}</h2>
-                           <p className="mt-1">${drug.drugPrice}</p>
+                           <p className="mt-1">$${drug.drugPrice}</p>
+                           <Button variant="contained" color="primary"
+                              onClick={async () => {
+                                 await DrugService.deleteDrug(drug.drugId)
+                              }}>
+                              delete Drug</Button>
                         </div>
                      </div>
                   ))}
                </div>
             </div>
-         </section> : <div>Loading...</div>}
+            <div>
+
+            </div>
+         </section>
 
       </>
    )

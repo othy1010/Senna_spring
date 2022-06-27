@@ -5,12 +5,15 @@ FROM node:alpine
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 
+COPY ./package.json package.json
+
+# install dependencies
+RUN yarn --network -timeout 100000
+RUN yarn install
+
 # copy source files
 COPY . /usr/src
 
-# install dependencies
-RUN yarn --netwrok -timeout 100000
-RUN yarn install
 # start app
 EXPOSE 3000
 CMD yarn dev
