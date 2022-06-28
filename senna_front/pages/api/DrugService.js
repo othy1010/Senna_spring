@@ -1,20 +1,38 @@
+import { useRouter } from 'next/router'
+import axios from 'axios';
+
 
 const bk_url = process.env.BACKEND_URL
 // const bk_url = "http://localhost:8080"
-const DRUGS_REST_API_URL = `${bk_url}/api/drugs`;
-
+const DRUGS_REST_API_URL = "http://backend:8080/api/drugs";
 class DrugService {
   //drugs
+
   async getDrugs() {
 
-    const response = await fetch(DRUGS_REST_API_URL).catch(err => console.log(err));
-    console.log(bk_url, "getDrugs")
-    return await response.json();
+    try {
+      const response = await fetch(DRUGS_REST_API_URL)
+      console.log(response, "⚡")
+      return await response;
+    }
+    catch (err) {
+      console.log(err)
+      throw (err)
+    }
+
   }
   async getDrugById(drugId) {
-    const response = await fetch(DRUGS_REST_API_URL + "/drugId/" + drugId).catch(err => console.log(err));
-    console.log(bk_url, "getDrugById")
-    return await response.json();
+    try {
+
+      const response = await axios.get(`http://backend:8080/api/drugs/drugId/${drugId}`);
+      console.log(response, "⚡getDrugById⚡")
+      return response;
+    }
+    catch (err) {
+      console.log(err, "🚚🚒🚒🚑🚛🚚🛴")
+      console.log(err.request, "💥💌💌💌💥💢")
+      throw (err)
+    }
   }
   async getDrugByPatientId(patientId) {
     const response = await fetch(DRUGS_REST_API_URL + "/patientId/" + patientId).catch(err => console.log(err));
@@ -50,9 +68,24 @@ class DrugService {
 
   }
   async deleteDrug(drugId) {
-    const response = await fetch(DRUGS_REST_API_URL + "/drugId/" + drugId, { method: "DELETE", headers: { "Content-Type": "application/json" } }).catch(err => console.log(err));
-    console.log(response, "delete_request_drug")
-    // return await response.json();
+    try {
+      await axios.delete(`/api/drugs/drugId/${drugId}`);
+      console.log("⚡delete_request_drug⚡")
+    }
+    catch (err) {
+      console.log(err)
+      throw (err)
+    }
+
+    // try {
+    //   const response = await fetch(DRUGS_REST_API_URL + "/drugId/" + drugId, { method: "DELETE" })
+    //   console.log(response, "⚡delete_request_drug⚡")
+    // }
+    // catch (err) {
+    //   console.log(err)
+    //   throw (err)
+    // }
+
   }
 
 }

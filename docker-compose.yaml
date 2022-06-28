@@ -3,19 +3,24 @@ version: '2'
 services:
     frontend:
         # image: 'othy1010/senna-frontend'
+        container_name: senna_front
         build: 
             context: ./senna_front/
         ports: 
             - 3000:3000
-        container_name: senna_front
-        environment:
-            - BACKEND_URL=http://backend:8080
-        depends_on:
-            - backend
         networks:
             - frontend
         links: 
             - backend
+        depends_on:
+            - backend
+        environment:
+            - BACKEND_URL=http://backend:8080
+        # volumes:
+        #     - ./senna_front:/usr/src
+        
+        
+        
     backend:
         # image: 'othy1010/senna-backend'
         build:
@@ -50,3 +55,6 @@ services:
 networks:
   backend:
   frontend:
+
+volumes:
+  senna_front:
