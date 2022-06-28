@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 
 
+// const bk_url = "http://localhost:8080"
+const DRUGS_REST_API_URL = "http://backend:8080/api/drugs";
 class DrugService {
   async getDrugs() {
     try {
