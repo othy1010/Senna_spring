@@ -5,7 +5,7 @@ module.exports = {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://backend:8080/api/:path*',
+        destination: `http://${process.env.backend_URL}:8080/api/:path*`,
       },
     ]
   },

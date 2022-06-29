@@ -48,7 +48,7 @@ export default function Header() {
                </div>
 
                <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                  <a href="/drug_store" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  <a href="/drugstore" className="text-base font-medium text-gray-500 hover:text-gray-900">
                      Drug-store
                   </a>
 
@@ -58,7 +58,7 @@ export default function Header() {
                   <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
                      Orders
                   </a>
-                  <a href="/tracking" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                  <a href="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
                      tracking
                   </a>
                   <a href="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -77,24 +77,7 @@ export default function Header() {
                                  <ShoppingCartIcon className=" w-10 h-10" />
                               </Badge>
                            </IconButton>
-                           {/* <ButtonGroup>
-                              <Button
-                                 aria-label="reduce"
-                                 onClick={() => {
-                                    setCount(Math.max(count - 1, 0));
-                                 }}
-                              >
-                                 <RemoveIcon fontSize="small" />
-                              </Button>
-                              <Button
-                                 aria-label="increase"
-                                 onClick={() => {
-                                    setCount(count + 1);
-                                 }}
-                              >
-                                 <AddIcon fontSize="small" />
-                              </Button>
-                           </ButtonGroup> */}
+
                         </div>
 
 
@@ -126,61 +109,3 @@ export default function Header() {
       </Popover>
    )
 }
-
-// import {
-//    BarChart,
-//    SearchRounded,
-//    ShoppingCartRounded,
-// } from "@mui/icons-material";
-// import React, { useEffect } from "react";
-// // import { useStateValue } from "./StateProvider";
-
-// function Header() {
-//    // const [{ cart }, dispatch] = useStateValue();
-
-//    useEffect(() => {
-//       const toggleIcon = document.querySelector(".toggleMenu");
-//       toggleIcon.addEventListener("click", () => {
-//          document.querySelector(".rightMenu").classList.toggle("active");
-//       });
-//    }, []);
-
-//    return (
-//       <header>
-//          <img
-//             src=""//firebase
-//             alt=""
-//             className="logo"
-//          />
-
-//          <div className="inputBox">
-//             <SearchRounded className="searchIcon" />
-//             <input type="text" placeholder="Search" />
-//          </div>
-
-//          <div className="shoppingCart">
-//             <ShoppingCartRounded className="cart" />
-//             {/* <div className={`${!cart ? "noCartItem" : "cart_content"}`}>
-//                <p>{cart ? cart.length : ""}</p> */}
-//             {/* </div> */}
-//          </div>
-
-//          <div className="profileContainer">
-//             <div className="imgBox">
-//                <img
-//                   src=""//firebase
-
-//                   alt=""
-//                />
-//             </div>
-//             <h2 className="userName">Vetrivel Ravi</h2>
-//          </div>
-
-//          <div className="toggleMenu">
-//             <BarChart className="toggleIcon" />
-//          </div>
-//       </header>
-//    );
-// }
-
-// export default Header;

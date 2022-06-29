@@ -22,7 +22,7 @@ public class Supplier {
    @Column(name = "supplierName")
    private String supplierName;
 
-   @Column(name = "supplierDescription")
+   @Column(name = "supplierDescription", columnDefinition = "text")
    private String supplierDescription;
 
    @Override

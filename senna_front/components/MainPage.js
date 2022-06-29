@@ -1,11 +1,16 @@
 import React from 'react'
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi'
 import Image from 'next/image'
-
+import { useRouter } from 'next/router'
 import HeroImage from '../assets/home.svg'
 
 
 function MainPage() {
+   const router = useRouter()
+   const redirct = () => {
+
+      router.push('/drugstore')
+   }
    return (
       <>
          <div className=" w-screen">
@@ -18,10 +23,11 @@ function MainPage() {
                      Your Online pharmacy from the palm of your hand
                   </p>
                   <div className="mt-12 flex items-start justify-start gap-5 text-center ">
-                     <button className=" h-14  cursor-pointer rounded-xl  bg-violet-600 px-8 font-semibold text-white hover:bg-violet-900 hover:shadow-xl">
+                     <button onClick={redirct}
+                        className=" h-14  cursor-pointer rounded-xl  bg-violet-600 px-8 font-semibold text-white hover:bg-violet-900 hover:shadow-xl">
                         Drug Store
                      </button>
-                     <button className="h-14 cursor-pointer rounded-xl  border border-violet-600 px-8 font-semibold text-violet-600 hover:bg-violet-900 hover:text-white hover:shadow-xl">
+                     <button className="h-14 cursor-pointer rounded-xl  border border-violet-600 px-8 font-semibold text-violet-600 hover:bg-violet-900 hover:text-white hover:shadow-xl" >
                         About us
                      </button>
                   </div>

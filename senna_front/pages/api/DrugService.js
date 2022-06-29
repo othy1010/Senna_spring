@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 // const bk_url = "http://localhost:8080"
-const DRUGS_REST_API_URL = "http://backend:8080/api/drugs";
+const DRUGS_REST_API_URL = `http://${process.env.backend_URL}:8080/api/drugs`;
 class DrugService {
   async getDrugs() {
     try {
@@ -17,7 +17,7 @@ class DrugService {
   }
   async getDrugById(drugId) {
     try {
-      const response = await axios.get(`http://backend:8080/api/drugs/drugId/${drugId}`)
+      const response = await axios.get(`${DRUGS_REST_API_URL}/drugId/${drugId}`)
       return response;
     }
     catch (err) {
@@ -28,7 +28,7 @@ class DrugService {
   }
   async getDrugByPatientId(patientId) {
     try {
-      const response = await axios.get(`http://backend:8080/api/drugs/patientId/${patientId}`)
+      const response = await axios.get(`${DRUGS_REST_API_URL}/patientId/${patientId}`)
       return response;
     }
     catch (err) {
@@ -40,7 +40,7 @@ class DrugService {
   async getDrugByDrugUsage(drugUsage) {
     try {
 
-      const response = await axios.get(`http://backend:8080/api/drugs/drugUsage/${drugUsage}`)
+      const response = await axios.get(`${DRUGS_REST_API_URL}/drugUsage/${drugUsage}`)
       return response;
     }
     catch (err) {
@@ -51,7 +51,7 @@ class DrugService {
   }
   async getDrugByDrugName(drugName) {
     try {
-      const response = await axios.get(`http://backend:8080/api/drugs/drugName/${drugName}`)
+      const response = await axios.get(`${DRUGS_REST_API_URL}/drugName/${drugName}`)
       return response;
     }
     catch (err) {
@@ -62,7 +62,7 @@ class DrugService {
   }
   async getDrugByDrugSupplierId(drugSupplierId) {
     try {
-      const response = await axios.get(`http://backend:8080/api/drugs/drugSupplierId/${drugSupplierId}`)
+      const response = await axios.get(`${DRUGS_REST_API_URL}/drugSupplierId/${drugSupplierId}`)
       return response;
     }
     catch (err) {
@@ -73,10 +73,11 @@ class DrugService {
   }
   async createDrug(drug) {
     try {
-      await axios.post(`/api/drugs/`, drug);
+      const response = await axios.post(`/api/drugs/`, drug);
+      console.log("⚡create_request_drug⚡")
     }
     catch (err) {
-      console.log(err)
+      console.log(err, "🚚")
       throw (err)
     }
   }

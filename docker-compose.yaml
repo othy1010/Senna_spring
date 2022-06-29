@@ -14,8 +14,6 @@ services:
             - backend
         depends_on:
             - backend
-        environment:
-            - BACKEND_URL=http://backend:8080
         # volumes:
         #     - ./senna_front:/usr/src
         
