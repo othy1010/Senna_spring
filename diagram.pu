@@ -1,0 +1,27 @@
+@startuml
+skinparam actorStyle awesome
+left to right direction
+"user" as User
+"ajouter un produit" as (ajout)
+"supprimmer un produit" as (suppression)
+"modifier un produit" as (modification)
+"afficher les produits" as (affichage)
+"acheter un produit" as (achat)
+"afficher un produit en particulier" as (affichage_produit)
+"authentification" as (authentification)
+
+User --> (ajout)
+User --> (suppression)
+User --> (modification) 
+User --> (affichage)
+User --> (achat)
+User --> (affichage_produit)
+
+(ajout) ..> (authentification) : <include>
+(suppression) ..> (authentification) : <include>
+(modification) ..> (authentification)  : <include>
+(affichage) ..> (authentification)  : <include>
+(achat) ..> (authentification)   : <include>
+(affichage_produit) ..> (ajout)   : <include>
+
+@enduml
