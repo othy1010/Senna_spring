@@ -35,7 +35,7 @@ public class Prescription {
     @Column(name = "prescriptionDate")
     private LocalDateTime prescriptionDate;
 
-    @Column(name = "prescriptionDescription")
+    @Column(name = "prescriptionDescription", columnDefinition = "text")
     private String prescriptionDescription;
 
     @Column(name = "prescriptionStatus")

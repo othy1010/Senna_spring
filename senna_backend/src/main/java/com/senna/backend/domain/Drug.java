@@ -21,7 +21,7 @@ public class Drug {
    @Column(name = "drugName")
    private String drugName;
 
-   @Column(name = "drugDescription")
+   @Column(name = "drugDescription", columnDefinition = "text")
    private String drugDescription;
 
    @Column(name = "drugPrice")
@@ -45,13 +45,13 @@ public class Drug {
    @Column(name = "drugSupplierId")
    private Long drugSupplierId;
 
-   @Column(name = "drugUsage")
+   @Column(name = "drugUsage", columnDefinition = "text")
    private String drugUsage;
 
-   @Column(name = "drugWarnings")
+   @Column(name = "drugWarnings", columnDefinition = "text")
    private String drugWarnings;
 
-   @Column(name = "drugSideEffects")
+   @Column(name = "drugSideEffects", columnDefinition = "text")
    private String drugSideEffects;
 
    // @Fetch(value = FetchMode.SUBSELECT)

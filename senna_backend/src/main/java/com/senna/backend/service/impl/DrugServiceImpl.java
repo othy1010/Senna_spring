@@ -1,6 +1,5 @@
 package com.senna.backend.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import com.senna.backend.domain.Drug;

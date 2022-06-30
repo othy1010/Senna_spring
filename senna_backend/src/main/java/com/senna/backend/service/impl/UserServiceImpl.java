@@ -31,15 +31,7 @@ public class UserServiceImpl implements UserService {
    @Override
    @PostMapping("users")
    public User saveUser(@RequestBody User user) {
-
       User userN = userRepo.save(user);
-      // String sub = "Creation du compte";
-      // String html = "<h1>Creation de votre compte</h1><p>Vous trouvez ci-joint les
-      // informations"
-      // + " necessaires pour vous connectez</p><ul><li>email : " + user.getEmail() +
-      // "</li><li>mot de passe : "
-      // + user.getPassword() + "</li></ul>";
-      // SendEmail.sendMail(user.getEmail(),sub,html);
       return userN;
    }
 
