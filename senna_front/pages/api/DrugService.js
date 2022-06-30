@@ -83,7 +83,9 @@ class DrugService {
   }
   async updateDrug(drugId, drug) {
     try {
-      await axios.post(`/api/drugs/drugId/${drugId}`, drug);
+      await axios.put(`/api/drugs/drugId/${drugId}`, drug);
+      console.log("⚡updateDrug⚡")
+
     }
     catch (err) {
       console.log(err)

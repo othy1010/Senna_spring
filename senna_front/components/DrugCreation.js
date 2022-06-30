@@ -1,29 +1,32 @@
 
 import { useState } from 'react'
-
+import DrugService from '../pages/api/DrugService';
+import { useRouter } from 'next/router'
 
 function DrugCreation({ detail }) {
-   const [state, setState] = useState({
-      drugName: detail ? detail.drugName : "",
-      drugDescription: detail ? detail.drugDescription : "",
-      drugPrice: detail ? detail.drugPrice : "",
-      drugQuantity: detail ? detail.drugQuantity : "",
-      drugCreatedAt: "",
-      drugStock: detail ? detail.drugStock : "",
-      needPrescription: detail ? detail.needPrescription : false,
-      drugCategoryId: detail ? detail.drugCategoryId : "",
-      drugSupplierId: detail ? detail.drugSupplierId : "",
-      drugUsage: detail ? detail.drugUsage : "",
-      drugWarnings: detail ? detail.drugWarnings : "",
-      drugSideEffects: detail ? detail.drugSideEffects : "",
-   });
+
+   const router = useRouter()
+   const [state, setState] = detail ? useState(detail) :
+      useState({
+         drugName: detail ? detail.drugName : "",
+         drugDescription: detail ? detail.drugDescription : "",
+         drugPrice: detail ? detail.drugPrice : "",
+         drugQuantity: detail ? detail.drugQuantity : "",
+         drugCreatedAt: "2022-06-28T18:03:12.06292",
+         drugStock: detail ? detail.drugStock : "",
+         needPrescription: detail ? detail.needPrescription : false,
+         drugCategoryId: detail ? detail.drugCategoryId : "",
+         drugSupplierId: detail ? detail.drugSupplierId : "",
+         drugUsage: detail ? detail.drugUsage : "",
+         drugWarnings: detail ? detail.drugWarnings : "",
+         drugSideEffects: detail ? detail.drugSideEffects : "",
+      });
    function handleChange(e) {
       if (e.target.name === 'needPrescription') {
          setState({ ...state, [e.target.name]: e.target.checked })
       } else {
          setState({ ...state, [e.target.name]: e.target.value })
       }
-      // setState({ ...state, [e.target.name]: e.target.value });
 
    }
    const [showModal, setShowModal] = useState(false);
@@ -34,19 +37,39 @@ function DrugCreation({ detail }) {
    async function handleSubmit(e) {
       e.preventDefault();
 
-      let formData = new FormData();
+      // let formData = new FormData();
 
-      for (let [key, value] of Object.entries(state)) {
-         formData.append(key, value);
-         console.log(key, value, `🎈submit Drug 🎈`, formData)
+      const d1 = {
+         drugName: state.drugName,
+         drugDescription: state.drugDescription,
+         drugPrice: state.drugPrice,
+         drugQuantity: state.drugQuantity,
+         drugCreatedAt: "2022-06-28T18:03:12.06292",
+         drugStock: state.drugStock,
+         needPrescription: state.needPrescription,
+         drugCategoryId: state.drugCategoryId,
+         drugSupplierId: state.drugSupplierId,
+         drugUsage: state.drugUsage,
+         drugWarnings: state.drugWarnings,
+         drugSideEffects: state.drugSideEffects
       }
-      console.log(`🎈submit Drug 🎈`, formData)
+
+      try {
+         console.log(d1, "👓d1👓")
+         detail ? await DrugService.updateDrug(detail.drugId, d1) : await DrugService.createDrug(d1)
+         detail ? router.push(`/drugstore/${detail.drugId}`) : router.push('/drugstore')
+         setShowModal(false)
+
+      } catch (err) {
+         console.log(err)
+      }
+
    }
 
    return (
       <>
          <button
-            button type="button" className="justify-center items-center flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+            button type="button" className={` justify-center ${detail ? '' : 'ml-16'} items-center   flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded`}
             onClick={() => setShowModal(true)}
          >
             {detail ? 'Update Drug' : 'Create Drug'}
@@ -129,7 +152,7 @@ function DrugCreation({ detail }) {
                               </div>
                               <div>
                                  <label for="drugStock" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date</label>
-                                 <input type="date" id="drugCreatedAt" name="drugCreatedAt" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="drug Date" onChange={handleChange} value={state.drugCreatedAt} />
+                                 <input type="date" id="drugCreatedAt" name="drugCreatedAt" className="bg-gray-50 border border- gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="28/06/2022" />
                               </div>
                            </div>
                            <div className="flex items-start mb-6">
